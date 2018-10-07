@@ -40,3 +40,17 @@
 /authors/:name
 /requests
 /login
+
+### Components
+
+- Header
+- Login Form
+- Users List
+  - User
+- Requests
+  - Request
+- Article Form
+
+
+
+
