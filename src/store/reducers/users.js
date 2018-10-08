@@ -2,7 +2,8 @@ import { LOGIN_ERROR, LOGIN_SUCCESS, LOGOUT, SET_USERS } from '../actionTypes';
 
 const initialState = {
   userList: [],
-  currentUser: null
+  currentUser: null,
+  error: null
 }
 
 export default (state = initialState, action) => {
@@ -18,7 +19,10 @@ export default (state = initialState, action) => {
         currentUser: action.uuid
       }
     case LOGIN_ERROR:
-      return state;
+      return {
+        ...state,
+        error: 'User or Password Incorrect...'
+      };
     case LOGOUT: {
       return {
         ...state,

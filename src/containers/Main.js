@@ -24,6 +24,11 @@ const Main = props => {
           path="/users"
           component={Users}
         />
+        <Route
+          exact
+          path="/users/:uuid"
+          component={User}
+        />
         <Profile
           exact
           path="/profile"
@@ -40,7 +45,6 @@ const Main = props => {
           component={Logout}
         />
         <Route
-          path="/not-found"
           component={NotFound}
         />
       </Switch>
@@ -48,12 +52,10 @@ const Main = props => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    users: state.users
-  };
-}
-
 export default withRouter(
-  connect(mapStateToProps, { /*authUser, removeError*/ })(Main)
+  connect(
+    state => ({
+      users: state.users
+    }), { /*authUser, removeError*/ }
+  )(Main)
 );

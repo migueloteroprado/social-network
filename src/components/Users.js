@@ -1,12 +1,20 @@
 import { Redirect } from 'react-router-dom';
 import React from 'react';
 import { connect }  from 'react-redux';
+import UserList from './UserList';
 
 const Users = (props) => {
   console.log(props);
   return (
     props.users.currentUser 
-      ? <h1>Users</h1>
+      ? <div>
+          <h1>Users</h1>
+          <div>
+            {
+              props.users.userList.map(user => (<UserList user={user} key={user.login.uuid}/>))
+            }
+          </div>
+        </div>
       : <Redirect to="/login" />
   )
 }

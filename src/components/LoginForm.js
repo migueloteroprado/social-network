@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { dispatchLoginStarted, dispatchSetUsers } from '../store/actions/users';
 import API_URL from '../config';
+import ModalMessage from '../components/ModalMessage'
 
 class LoginForm extends Component {
 
   state = {
     userName: 'smallswan392',
     password: 'freedom',
-    loading: true,
-    logingIn: false
+    loadingUsers: false,
+    logingIn: false,
+    error: null
   };
 
   handleInput = (event) => {
@@ -18,27 +20,35 @@ class LoginForm extends Component {
 
   handleSubmit = () => {
     this.setState({ logingIn: true });
-    console.log(this.state)
     this.props.onLogin(this.state.userName, this.state.password)
   };
 
+  handleLoginOK = () => {
+    console.log(this.state)
+    this.props.history.push("/users");
+  }
+
   render() {
     return (
-      this.state.loading
-      ? <h1>Loading...</h1>
-      : <div>
-          <div>
-            <label>User Name
-              <input type="text" id="userName" value={this.state.userName} onChange={this.handleInput}/>
-            </label>
-          </div>
-          <div>
-            <label>Password
-              <input type="password" id="password" value={this.state.password} onChange={this.handleInput}/>
-            </label>
-          </div>
-          <button type="submit" onClick={this.handleSubmit} disabled={this.state.logingIn}>Login</button>
-        </div>
+      this.props.users.currentUser && this.state.logingIn
+      ? <ModalMessage message="Loged In successfully" onClose={this.handleLoginOK}/>
+      : this.state.error || this.props.users.error
+        ? <h2>ERROR: {this.state.error || this.props.users.error}</h2>
+        : this.state.loading
+          ? <h1>Loading...</h1>
+          : <div>
+              <div>
+                <label>User Name
+                  <input type="text" id="userName" value={this.state.userName} onChange={this.handleInput} required/>
+                </label>
+              </div>
+              <div>
+                <label>Password
+                  <input type="password" id="password" value={this.state.password} onChange={this.handleInput} required/>
+                </label>
+              </div>
+              <button type="submit" onClick={this.handleSubmit} disabled={this.state.logingIn}>Login</button>
+            </div>
     );
   }
 
@@ -47,22 +57,30 @@ class LoginForm extends Component {
     if (this.props.users.userList.length === 0) {
       // Request users from API
       try {
+        this.setState({
+          loadingUsers: true
+        })
         const response = await fetch(API_URL);
         const usersJSON = await response.json();
         if (usersJSON.results) {
           this.props.onSetUsers(usersJSON.results);
         }
+        this.setState({
+          error: null
+        })
       } catch(err) {
         console.log(err);
-        throw new Error(err.message);
+        this.setState({
+          error: 'There was an Error getting Users Data'
+        })
       } finally {
         this.setState({
-          loading: false
+          loadingUsers: false
         })
       }
     } else {
       this.setState({
-        loading: false
+        loadingUsers: false
       })
     }
   }
