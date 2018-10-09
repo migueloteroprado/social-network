@@ -7,10 +7,10 @@ const Users = (props) => {
   return (
     props.login.currentUser 
       ? <div>
-          <h1>Users</h1>
+          <h3>Users</h3>
           <div>
             {
-              props.users.userList.map(user => (<User user={user} key={user.login.uuid}/>))
+              props.users.userList.map(user => (<User user={user} key={user.login.uuid} {...props}/>))
             }
           </div>
         </div>
@@ -18,5 +18,5 @@ const Users = (props) => {
   )
 }
 export default connect(
-  (state) => ({ users: state.users, login: state.login})
+  state => ({ users: state.users, login: state.login})
 )(Users);

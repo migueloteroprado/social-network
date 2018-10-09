@@ -2,18 +2,17 @@ import { Redirect } from 'react-router-dom';
 import React, { Component } from 'react';
 import { connect }  from 'react-redux';
 import { dispatchAddArticle } from '../store/actions/articles';
+import UserDetail from './UserDetail'
 import Article from './Article';
 import ArticleForm from './ArticleForm';
 
 class Profile extends Component {
   state = {
-    //articles: null,
     user: this.props.login.currentUser,
     articleAdded: false
   }
   render() {
     const user = this.state.user || null;
-    const name = user ? this.getName(user) : null;
     return (
       this.props.login.currentUser 
         ? <div>
@@ -21,9 +20,7 @@ class Profile extends Component {
               <h3>Profile</h3>
             </header>
             <section>
-              <img src={user.picture.large} alt={name} />
-              <div>Name: {name}</div>
-              <div></div>
+              <UserDetail user={user} />
             </section>
             <section>
               <header>

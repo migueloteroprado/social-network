@@ -18,6 +18,7 @@ export default (state = initialState, action) => {
         error: null
       }    
     case LOGIN_SUCCESS:
+      //sessionStorage.setItem('social.currentUser', JSON.stringify(action.user))
       return {
         ...state,
         currentUser: action.user,
@@ -35,9 +36,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLogging: false,
+        isLogged: true,
         error: null
       };
     case LOGOUT: {
+      //sessionStorage.removeItem('social.currentUser')
       return {
         ...state,
         currentUser: null,

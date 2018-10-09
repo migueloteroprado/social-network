@@ -31,7 +31,7 @@ class Navbar extends Component {
           <ul className="navbar-nav menu navbar-right">
             <li className="nav-item">
               { 
-                this.props.login.currentUser
+                this.props.login.isLogged
                 ? <NavLink exact className="nav-link" to="/logout">Logout</NavLink>
                 : <NavLink exact className="nav-link" to="/login">Login</NavLink>
               }
