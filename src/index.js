@@ -6,7 +6,8 @@ import store from './store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
-// ReactDOM.render(<SocialNetwork />, document.getElementById('root'));
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 ReactDOM.render(
   <Provider store={store}>

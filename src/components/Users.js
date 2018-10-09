@@ -1,17 +1,16 @@
 import { Redirect } from 'react-router-dom';
 import React from 'react';
 import { connect }  from 'react-redux';
-import UserList from './UserList';
+import User from './User';
 
 const Users = (props) => {
-  console.log(props);
   return (
-    props.users.currentUser 
+    props.login.currentUser 
       ? <div>
           <h1>Users</h1>
           <div>
             {
-              props.users.userList.map(user => (<UserList user={user} key={user.login.uuid}/>))
+              props.users.userList.map(user => (<User user={user} key={user.login.uuid}/>))
             }
           </div>
         </div>
@@ -19,5 +18,5 @@ const Users = (props) => {
   )
 }
 export default connect(
-  (state) => ({ users: state.users})
+  (state) => ({ users: state.users, login: state.login})
 )(Users);

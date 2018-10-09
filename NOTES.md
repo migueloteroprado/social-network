@@ -4,6 +4,7 @@
 "social.articles": [
   {
     "id": 1,
+    "author": 1,
     "title": "Artículo de prueba",
     "content": "Lorem ipsum"
   },
@@ -36,10 +37,12 @@
 
 ### Routes
 
-/authors
-/authors/:name
-/requests
+/users
+/users/:uuid
+/profile
+/pending-requests
 /login
+/logout
 
 ### Components
 

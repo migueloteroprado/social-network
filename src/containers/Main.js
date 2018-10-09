@@ -5,12 +5,11 @@ import HomePage from "../components/HomePage";
 import LoginForm from "../components/LoginForm";
 import Logout from '../components/Logout'
 import Users from '../components/Users';
-import User from '../components/User';
+import UserDetail from '../components/UserDetail';
 import Profile from '../components/Profile';
 import NotFound from '../components/NotFound';
 
 const Main = props => {
-  // const { authUser, errors, removeError, currentUser } = props;
   return (
     <div className="container">
       <Switch>
@@ -27,7 +26,7 @@ const Main = props => {
         <Route
           exact
           path="/users/:uuid"
-          component={User}
+          component={UserDetail}
         />
         <Profile
           exact
@@ -55,7 +54,8 @@ const Main = props => {
 export default withRouter(
   connect(
     state => ({
-      users: state.users
+      users: state.users,
+      login: state.login
     }), { /*authUser, removeError*/ }
   )(Main)
 );

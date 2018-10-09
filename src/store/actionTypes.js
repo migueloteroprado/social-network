@@ -1,5 +1,17 @@
 export const SET_USERS = 'SET_USERS';
+
 export const LOGIN_STARTED = 'LOGIN_STARTED';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_ENDED = 'LOGIN_ENDED';
 export const LOGOUT = 'LOGOUT';
+
+export const LOAD_ARTICLES = 'LOAD_ARTICLES';
+export const ADD_ARTICLE = 'ADD_ARTICLE';
+
+export const LOAD_SUBSCRIPTIONS = 'LOAD_SUBSCRIPTIONS';
+export const ADD_SUBSCRIPTION = 'ADD_SUBSCRIPTION';
+export const REMOVE_SUBSCRIPTION = 'REMOVE_SUBSCRIPTION';
+
+export const LOAD_REQUESTS = 'LOAD_REQUESTS';
+export const ADD_REQUEST = 'ADD_REQUEST';

@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import { connect }  from 'react-redux';
-import { dispatchLogout } from '../store/actions/users';
+import { dispatchLogout } from '../store/actions/login';
+import ModalMessage from './ModalMessage'
 
 class Logout extends Component {
 
-  state = {
-    loggingOut: true
-  }
-  render(props) {
+  render() {
     return (
-      this.props.users.currentUser 
-        ? <h1>Logging out...</h1>
-        : <h1>Logged out successfully</h1>
+      <ModalMessage message="Logged out successfully" onClose={() => this.props.history.push('/')}/>
     )
   }
   componentDidMount() {
@@ -21,7 +17,7 @@ class Logout extends Component {
 }
 
 export default connect(
-  state => ({ users: state.users}),
+  state => ({ users: state.users, login: state.login }),
   dispatch => ({
     onLogout: () => dispatchLogout()
   })
