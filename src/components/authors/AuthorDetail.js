@@ -1,32 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
 import Subscription from './Subscription'
 import ArticleList from '../articles/ArticleList'
-import getSubscriptionState from '../../utils/subscriptions'
+import { getSubscriptionState, getName } from '../../utils/utils'
 
 class AuthorDetail extends React.Component {
 
   render() {
-    const currentUser = this.props.login.currentUser
-    const user = this.getUser()
+    const currentAuthor = this.props.login.currentAuthor
+    const author = this.getAuthor()
     const subscriptions = this.props.subscriptions.subscriptions
-    const subscriptionState = getSubscriptionState(currentUser, user, subscriptions)
+    const subscriptionState = getSubscriptionState(currentAuthor, author, subscriptions)
     return (
-      this.props.login.currentUser
-        ? user 
+      this.props.login.currentAuthor
+        ? author 
           ? <React.Fragment>
               <section>
-                <img src={user.picture.large} alt={this.getName()}/>
-                <h5>{this.getName()}</h5>
-                <Subscription user={user} subscriptionState={subscriptionState}/>
-                <div><p>Phone: {user.phone}</p></div>
-                <div><p>Cell: {user.cell}</p></div>
-                <div><p>Email: <a href={user.email}>{user.email}</a></p></div>
-                <div><p>Gender: {user.gender}</p></div>
-                <div><p>Age: {user.dob.age}</p></div>
-                <div><p>Location: {user.location.street}, {user.location.city}, {user.location.postcode} {user.location.state}</p></div>
-                <div><p>Nationality: {user.nat}</p></div>
+                <img src={author.picture.large} alt={getName(author)}/>
+                <h5>{getName(author)}</h5>
+                <Subscription author={author} subscriptionState={subscriptionState}/>
+                <div><p>Phone: {author.phone}</p></div>
+                <div><p>Cell: {author.cell}</p></div>
+                <div><p>Email: <a href={author.email}>{author.email}</a></p></div>
+                <div><p>Gender: {author.gender}</p></div>
+                <div><p>Age: {author.dob.age}</p></div>
+                <div><p>Location: {author.location.street}, {author.location.city}, {author.location.postcode} {author.location.state}</p></div>
+                <div><p>Nationality: {author.nat}</p></div>
               </section>
               {
                 subscriptionState === 'accepted'
@@ -34,43 +34,46 @@ class AuthorDetail extends React.Component {
                 : null
               }
             </React.Fragment>
-          : <Redirect to="/users" />
+          : <Redirect to="/authors" />
         : <Redirect to="/login" />
     )
   }
-
+  // filter articles
   getArticles = () => {
-    const user = this.getUser()
-    return this.props.articles.articles.filter(article => article.author === user.login.uuid)
+    const author = this.getAuthor()
+    return this.props.articles.articles.filter(article => article.author === author.login.uuid)
   }
 
-  userExists = () => {
-    if (!this.props.login.currentUser) {
+  authorExists = () => {
+    if (!this.props.login.currentAuthor) {
       return null
     }
-    const userSearch = this.props.users.userList.filter(user => user.login.currentUser.uuid === this.props.match.params.uuid)
-    if (userSearch.length > 0) {
-      return userSearch[0]
+    const authorSearch = this.props.authors.authors.filter(author => author.login.currentAuthor.uuid === this.props.match.params.uuid)
+    if (authorSearch.length > 0) {
+      return authorSearch[0]
     } else {
       return null
     }
   }
 
-  getUser = () => {
-    if (this.props.user) {
-      return this.props.user
-    } else if (this.props.location.state && this.props.location.state.user) {
-      return this.props.location.state.user
+  getAuthor = () => {
+    // Get the author
+    // If this component is invoked from Profile Page, it will be the current user and will come from reducer
+    // If it is invoked from author detail, it will be come from props.location.state of the NavLink
+    if (this.props.author) {
+      return this.props.author
+    } else if (this.props.location.state && this.props.location.state.author) {
+      return this.props.location.state.author
     } else {
       return null
     }
   }
-
-  getName = (user) => (user ? `${user.name.first} ${user.name.last}` : '')
 
 } 
 
-export default connect(
-  state => ({ login: state.login, users: state.users, subscriptions: state.subscriptions, articles: state.articles })
-)(AuthorDetail);
+export default withRouter(
+  connect(
+    state => ({ login: state.login, authors: state.authors, subscriptions: state.subscriptions, articles: state.articles })
+  )(AuthorDetail)
+);
 

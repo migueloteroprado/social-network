@@ -2,7 +2,7 @@ import { LOGIN_STARTED, LOGIN_ERROR, LOGIN_SUCCESS, LOGIN_ENDED, LOGOUT } from '
 
 const initialState = {
   isLogging: false,
-  currentUser: null,
+  currentAuthor: null,
   error: null
 }
 
@@ -11,22 +11,22 @@ export default (state = initialState, action) => {
     case LOGIN_STARTED:
       return {
         ...state,
-        currentUser: null,
+        currentAuthor: null,
         isLogging: true,
         error: null
       }    
     case LOGIN_SUCCESS:
-      //sessionStorage.setItem('social.currentUser', JSON.stringify(action.user))
+sessionStorage.setItem('social.currentAuthor', JSON.stringify(action.author))
       return {
         ...state,
-        currentUser: action.user,
+        currentAuthor: action.author,
         isLogging: false
       }
     case LOGIN_ERROR:
       return {
         ...state,
         isLogging: false,
-        error: 'User or Password Incorrect...'
+        error: 'User name or Password Incorrect...'
       };
     case LOGIN_ENDED:
       return {
@@ -35,10 +35,10 @@ export default (state = initialState, action) => {
         error: null
       };
     case LOGOUT: {
-      //sessionStorage.removeItem('social.currentUser')
+sessionStorage.removeItem('social.currentAuthor')
       return {
         ...state,
-        currentUser: null,
+        currentAuthor: null,
         isLogging: false,
         error: null
       }

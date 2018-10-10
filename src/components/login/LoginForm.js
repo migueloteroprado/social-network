@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { dispatchSetUsers } from '../../store/actions/users';
+import { dispatchSetAuthors } from '../../store/actions/authors';
 import { dispatchLoginStarted, dispatchLoginEnded } from  '../../store/actions/login';
-import API_URL from '../../config';
 import ModalMessage from '../ModalMessage'
 
 class LoginForm extends Component {
@@ -10,6 +9,7 @@ class LoginForm extends Component {
   state = {
     userName: 'smallswan392',
     password: 'freedom',
+    showErrorMessage: false
   };
 
   handleInput = (event) => {
@@ -21,17 +21,19 @@ class LoginForm extends Component {
     this.props.onLogin(this.state.userName, this.state.password)
   };
 
+  /*
   handleMessageOK = () => {
-    if (this.props.login.currentUser) {
-      this.props.history.push("/users");
+    if (this.props.login.currentAuthor) {
+      this.props.history.push("/authors");
     } else {
       this.props.onReset();
     }
   }
+  */
 
   render() {
     return (
-      this.props.login.currentUser
+      this.props.login.currentAuthor
       ? <ModalMessage message="Loged In successfully" /* showButton={true} onClose={this.handleMessageOK} *//> 
       : this.state.loading
         ? <h1>Loading...</h1>
@@ -49,47 +51,30 @@ class LoginForm extends Component {
               </div>
               <input type="submit" disabled={this.props.login.isLogging} value="Login" />
             </form>
-            { 
+            {
               this.props.login.error
-                ? <ModalMessage message={this.props.login.error} />
+                ? <div className="alert alert-warning fade show" role="alert">
+                    <strong>{this.props.login.error}</strong>
+                  </div>
                 : null
             }
           </React.Fragment>
     );
   }
 
-  componentDidMount = async () => {
-    // If user list was not loaded from API, then load it
-    if (this.props.users.userList.length === 0) {
-      // Request users from API
-      try {
-        this.setState({ loadingUsers: true })
-        const response = await fetch(API_URL);
-        const usersJSON = await response.json();
-        if (usersJSON.results) {
-          this.props.onSetUsers(usersJSON.results);
-        }
-        this.setState({ error: null })
-      } catch(err) {
-        console.log(err);
-        this.setState({ error: 'There was an Error getting Users Data' })
-      } finally {
-        this.setState({ loadingUsers: false })
-      }
-    } else {
-      this.setState({ loadingUsers: false })
-    }
-  }
-
   componentWillUnmount = () => {
     this.props.onReset();
   }
+
+  resetMessage = () => {
+    this.setState({...this.state, showErrorMessage: false })
+  }  
 }
 
 export default connect(
-  state => ({ users: state.users, login: state.login }), 
+  state => ({ authors: state.authors, login: state.login }), 
   dispatch => ({
-    onSetUsers: (users) => dispatchSetUsers(users),
+    onSetAuthors: (authors) => dispatchSetAuthors(authors),
     onLogin: (userName, password) => dispatch(dispatchLoginStarted(userName, password)),
     onReset: () => dispatchLoginEnded()
   })

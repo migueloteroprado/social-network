@@ -13,13 +13,12 @@ class Logout extends Component {
     )
   }
   componentDidMount() {
-    console.log(this.props);
     this.props.onLogout();
   }
 }
 
 export default connect(
-  state => ({ users: state.users, login: state.login }),
+  state => ({ authors: state.authors, login: state.login }),
   dispatch => ({
     onLogout: () => dispatchLogout()
   })

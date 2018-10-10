@@ -1,24 +1,24 @@
 import { Redirect } from 'react-router-dom';
 import React from 'react';
 import { connect }  from 'react-redux';
-import User from './Author';
-import getSubscriptionState from '../../utils/subscriptions'
+import Author from './Author';
+import { getSubscriptionState } from '../../utils/utils'
 
-const Authors = ({ users: {userList}, login: {currentUser}, user, subscriptions: {subscriptions} }) => {
+const Authors = ({ authors: {authors}, login: {currentAuthor}, subscriptions: {subscriptions} }) => {
   return (
-    currentUser 
+    currentAuthor
       ? <div>
           <h3>Authors</h3>
           <div>
             {
-              // Order users by subscription state, subscribed first
-              userList
-              .map(user => Object.assign({}, user, {subscriptionState: getSubscriptionState(currentUser, user, subscriptions)}))
+              // Order authors by subscription state, subscribed first
+              authors
+              .map(author => Object.assign({}, author, {subscriptionState: getSubscriptionState(currentAuthor, author, subscriptions)}))
               .sort((u1, u2) => u1.subscriptionState === 'accepted' ? -1 : 1)
-              .map(user => (
-                user.login.uuid === currentUser.login.uuid
+              .map(author => (
+                author.login.uuid === currentAuthor.login.uuid
                   ? null
-                  : <User user={user} key={user.login.uuid} />
+                  : <Author author={author} key={author.login.uuid} />
               ))
             }
           </div>
@@ -27,5 +27,5 @@ const Authors = ({ users: {userList}, login: {currentUser}, user, subscriptions:
   )
 }
 export default connect(
-  state => ({ users: state.users, login: state.login, subscriptions: state.subscriptions})
+  state => ({ authors: state.authors, login: state.login, subscriptions: state.subscriptions})
 )(Authors);

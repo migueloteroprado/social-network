@@ -49,11 +49,11 @@ class Subscription extends Component {
 
   requestSubscription = () => {
     this.setState({ subscriptionState: 'pending' })
-    this.props.onAddSubscription({ user: this.props.user.login.uuid, subscriptor: this.props.login.currentUser.login.uuid, state: 'pending' })
+    this.props.onAddSubscription({ author: this.props.author.login.uuid, subscriptor: this.props.login.currentAuthor.login.uuid, state: 'pending' })
   }
   removeSubscription = () => {
     this.setState({ subscriptionState: 'unsubscribed' })
-    this.props.onRemoveSubscription({ user: this.props.user.login.uuid, subscriptor: this.props.login.currentUser.login.uuid })
+    this.props.onRemoveSubscription({ author: this.props.author.login.uuid, subscriptor: this.props.login.currentAuthor.login.uuid })
   }
 
 }

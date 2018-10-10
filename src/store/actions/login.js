@@ -15,9 +15,9 @@ export const actionLoginError = () => ({
   error: true
 })
 
-export const actionLoginSuccess = (user) => ({
+export const actionLoginSuccess = (author) => ({
   type: LOGIN_SUCCESS,
-  user
+  author
 })
 
 export const actionLoginEnded = () => ({
@@ -32,9 +32,9 @@ export const actionLogout = () => ({
 
 export const dispatchLoginStarted = (userName, password) => dispatch => {
   dispatch(actionLoginStarted(userName, password));
-  const user = checkUser(userName, password);
-  if (user) {
-    dispatch(actionLoginSuccess(user))
+  const author = checkLogin(userName, password);
+  if (author) {
+    dispatch(actionLoginSuccess(author))
   } else {
     dispatch(actionLoginError());
   }
@@ -44,21 +44,21 @@ export const dispatchLoginError = (userName, password) => {
   store.dispatch(actionLoginError(userName, password));
 }
 
-export const dispatchLoginSuccess = (user) => {
-  store.dispatch(actionLoginSuccess(user));
+export const dispatchLoginSuccess = (author) => {
+  store.dispatch(actionLoginSuccess(author));
 }
 
-export const dispatchLoginEnded = (user) => {
-  store.dispatch(actionLoginEnded(user));
+export const dispatchLoginEnded = (author) => {
+  store.dispatch(actionLoginEnded(author));
 }
 
 export const dispatchLogout = () => {
   store.dispatch(actionLogout());
 }
 
-const checkUser = (userName, password) => {
-  const users = store.getState().users.userList;
-  const user = users.filter(
-    user => user.login.username === userName && user.login.password === password)
-  return user && user.length > 0 ? user[0] : null;
+const checkLogin = (userName, password) => {
+  const authors = store.getState().authors.authors;
+  const author = authors.filter(
+    author => author.login.username === userName && author.login.password === password)
+  return author && author.length > 0 ? author[0] : null;
 }

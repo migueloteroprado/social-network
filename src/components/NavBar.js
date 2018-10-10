@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import './NavBar.css';
 
 class Navbar extends Component {
   render() {
+
     return (
       <nav className="navbar navbar-dark bg-dark navbar-expand">
         <div className="container-fluid">
@@ -18,7 +19,7 @@ class Navbar extends Component {
 
           <ul className="navbar-nav menu">
             <li className="nav-item">
-              <NavLink exact className="nav-link" to='/users'>Users</NavLink>
+              <NavLink className="nav-link" to='/authors'>Authors</NavLink>
             </li>
             <li className="nav-item">
               <NavLink exact className="nav-link" to='/profile'>Profile</NavLink>
@@ -31,7 +32,7 @@ class Navbar extends Component {
           <ul className="navbar-nav menu navbar-right">
             <li className="nav-item">
               { 
-                this.props.login.currentUser
+                this.props.login.currentAuthor
                 ? <NavLink exact className="nav-link" to="/logout">Logout</NavLink>
                 : <NavLink exact className="nav-link" to="/login">Login</NavLink>
               }
@@ -44,7 +45,8 @@ class Navbar extends Component {
   }
 }
 
-export default connect(
-  state => ({ users: state.users, login: state.login }),
-  null, null, { pure: false } 
-)(Navbar);
+export default withRouter(connect(
+  state => ({ 
+    login: state.login
+  })
+)(Navbar));

@@ -6,12 +6,12 @@ import { dispatchAcceptSubscription, dispatchRejectSubscription } from '../../st
 class Requests extends Component {
 
   render() {
-    const subscriptions = this.props.login.currentUser 
+    const subscriptions = this.props.login.currentAuthor
       ? this.props.subscriptions.subscriptions.filter(subscription => 
-        subscription.user === this.props.login.currentUser.login.uuid && subscription.state === 'pending')
+        subscription.author === this.props.login.currentAuthor.login.uuid && subscription.state === 'pending')
       : []
     return (
-      this.props.login.currentUser 
+      this.props.login.currentAuthor
       ? <section>
           <header>
             <h3>Pending Requests</h3>
@@ -33,7 +33,7 @@ class Requests extends Component {
 
   handleAccept = (event, subscription) => {
     this.props.onAccept({
-      user: this.props.login.currentUser.login.uuid,
+      author: this.props.login.currentAuthor.login.uuid,
       subscriptor: subscription.subscriptor,
       state: 'accepted'
     })
@@ -41,7 +41,7 @@ class Requests extends Component {
 
   handleReject = (event, subscription) => {
     this.props.onReject({
-      user: this.props.login.currentUser.login.uuid,
+      author: this.props.login.currentAuthor.login.uuid,
       subscriptor: subscription.subscriptor,
       state: 'rejected'
     })

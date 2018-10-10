@@ -14,44 +14,14 @@ const Main = props => {
   return (
     <div className="container">
       <Switch>
-        <Route
-          exact
-          path="/"
-          component={HomePage}
-        />
-        <Route
-          exact
-          path="/users"
-          component={Authors}
-        />
-        <Route
-          exact
-          path="/users/:uuid"
-          component={AuthorDetail}
-        />
-        <Profile
-          exact
-          path="/profile"
-          component={Profile}
-        />
-        <Route
-          exact
-          path="/login"
-          component={LoginForm}
-        />
-        <Route
-          exact
-          path="/requests"
-          component={Requests}
-        />
-        <Route
-          exact
-          path="/logout"
-          component={Logout}
-        />
-        <Route
-          component={NotFound}
-        />
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/authors" component={Authors} />
+        <Route exact path="/authors/:uuid" component={AuthorDetail} />
+        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/requests" component={Requests} />
+        <Route exact path="/login" component={LoginForm} />
+        <Route exact path="/logout" component={Logout} />
+        <Route component={NotFound} />
       </Switch>
     </div>
   );
@@ -60,7 +30,7 @@ const Main = props => {
 export default withRouter(
   connect(
     state => ({
-      users: state.users,
+      authors: state.authors,
       login: state.login
     })
   )(Main)

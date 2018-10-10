@@ -14,14 +14,14 @@ export default (state = initialState, action) => {
       // Find previous subscription. If exists update state, otherwise create a new one
       let subscriptionsAdded = []
       const subscriptionsFound = state.subscriptions.filter(
-        s => s.user === action.payload.user && s.subscriptor === action.payload.subscriptor
+        s => s.author === action.payload.author && s.subscriptor === action.payload.subscriptor
       )
       if (subscriptionsFound.length === 0) {
         subscriptionsAdded = [...state.subscriptions, action.payload]
       } else {
         subscriptionsAdded = state.subscriptions.map(s => {
-          return s.user === action.payload.user && s.subscriptor === action.payload.subscriptor
-            ? {user: s.user, subscriptor: s.subscriptor, state: 'pending'}
+          return s.author === action.payload.author && s.subscriptor === action.payload.subscriptor
+            ? {author: s.author, subscriptor: s.subscriptor, state: 'pending'}
             : s
         })
       }
@@ -32,7 +32,7 @@ export default (state = initialState, action) => {
     case REMOVE_SUBSCRIPTION:
       const subscriptionsRemoved = 
         state.subscriptions.filter(
-          s => s.user !== action.payload.user && s.subscriptor !== action.payload.subscriptor
+          s => s.author !== action.payload.author && s.subscriptor !== action.payload.subscriptor
         )
         localStorage.setItem('social.subscriptions', JSON.stringify(subscriptionsRemoved));
       return {
@@ -41,10 +41,10 @@ export default (state = initialState, action) => {
     case ACCEPT_SUBSCRIPTION:
     case REJECT_SUBSCRIPTION:
       const subscriptionsUpdated = state.subscriptions.map(s => {
-        if (s.user !== action.payload.user && s.subscriptor !== action.payload.subscriptor) {
+        if (s.author !== action.payload.author && s.subscriptor !== action.payload.subscriptor) {
           return s
         } else {
-          return {user: action.payload.user, subscriptor: action.payload.subscriptor, state: action.payload.state}
+          return {author: action.payload.author, subscriptor: action.payload.subscriptor, state: action.payload.state}
         }
       })
       localStorage.setItem('social.subscriptions', JSON.stringify(subscriptionsUpdated));

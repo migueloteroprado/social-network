@@ -1,4 +1,4 @@
-export const SET_USERS = 'SET_USERS';
+export const SET_AUTHORS = 'SET_AUTHORS';
 
 export const LOGIN_STARTED = 'LOGIN_STARTED';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
