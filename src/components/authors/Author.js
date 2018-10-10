@@ -2,9 +2,9 @@ import React from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Subscription from './Subscription'
-import getSubscriptionState from '../utils/subscriptions'
+import getSubscriptionState from '../../utils/subscriptions'
 
-const User = ({match: {path}, user, login: {currentUser}, subscriptions: {subscriptions}}) => (
+const Author = ({match: {path}, user, login: {currentUser}, subscriptions: {subscriptions}}) => (
   <div>
     <img src={user.picture.thumbnail} alt={`${user.name.first} ${user.name.last}`}/>
     <NavLink className="nav-link" to={{ pathname: `${path}/${user.login.uuid}`, state: {user: user}}}>
@@ -20,5 +20,5 @@ const User = ({match: {path}, user, login: {currentUser}, subscriptions: {subscr
 export default withRouter(
   connect(
     state => ({ login: state.login, subscriptions: state.subscriptions })
-  )(User)
+  )(Author)
 )

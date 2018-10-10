@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom';
-import { dispatchAcceptSubscription, dispatchRejectSubscription } from '../store/actions/subscriptions'
+import { dispatchAcceptSubscription, dispatchRejectSubscription } from '../../store/actions/subscriptions'
 
 class Requests extends Component {
 

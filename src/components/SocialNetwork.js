@@ -59,6 +59,7 @@ class SocialNetwork extends Component {
     this.props.loadArticles({ articles, id });
   }
 
+  // Get subscriptions from localStorage
   getLocalStorageSubscriptions() {
     let subscriptions = [];
     try {

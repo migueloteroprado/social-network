@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { dispatchRemoveSubscription, dispatchAddSubscription } from '../store/actions/subscriptions';
+import { dispatchRemoveSubscription, dispatchAddSubscription } from '../../store/actions/subscriptions';
 
 class Subscription extends Component {
 

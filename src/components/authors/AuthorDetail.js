@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import Subscription from './Subscription'
-import Article from './Article'
-import getSubscriptionState from '../utils/subscriptions'
+import ArticleList from '../articles/ArticleList'
+import getSubscriptionState from '../../utils/subscriptions'
 
-class UserDetail extends React.Component {
+class AuthorDetail extends React.Component {
 
   render() {
     const currentUser = this.props.login.currentUser
@@ -30,16 +30,7 @@ class UserDetail extends React.Component {
               </section>
               {
                 subscriptionState === 'accepted'
-                ? <section>
-                    <header>
-                      <h4>Articles</h4>
-                    </header>
-                    { 
-                      this.getArticles().map(article => (
-                        <Article article={article} key={article.id} />
-                      ))
-                    }
-                  </section>
+                ? <ArticleList articles={this.getArticles()} />
                 : null
               }
             </React.Fragment>
@@ -81,5 +72,5 @@ class UserDetail extends React.Component {
 
 export default connect(
   state => ({ login: state.login, users: state.users, subscriptions: state.subscriptions, articles: state.articles })
-)(UserDetail);
+)(AuthorDetail);
 

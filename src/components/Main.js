@@ -1,14 +1,14 @@
 import React from "react";
 import { Switch, Route, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import HomePage from "../components/HomePage";
-import LoginForm from "../components/LoginForm";
-import Logout from '../components/Logout'
-import Users from '../components/Users';
-import UserDetail from '../components/UserDetail';
-import Profile from '../components/Profile';
-import Requests from '../components/Requests';
-import NotFound from '../components/NotFound';
+import HomePage from "./HomePage";
+import LoginForm from "./login/LoginForm";
+import Logout from './login/Logout'
+import Authors from './authors/Authors';
+import AuthorDetail from './authors/AuthorDetail';
+import Profile from './profile/Profile';
+import Requests from './requests/Requests';
+import NotFound from './NotFound';
 
 const Main = props => {
   return (
@@ -22,17 +22,17 @@ const Main = props => {
         <Route
           exact
           path="/users"
-          component={Users}
+          component={Authors}
         />
         <Route
           exact
           path="/users/:uuid"
-          component={UserDetail}
+          component={AuthorDetail}
         />
         <Profile
           exact
           path="/profile"
-          component={Users}
+          component={Profile}
         />
         <Route
           exact

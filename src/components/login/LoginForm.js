@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { dispatchSetUsers } from '../store/actions/users';
-import { dispatchLoginStarted, dispatchLoginEnded } from  '../store/actions/login';
-import API_URL from '../config';
-import ModalMessage from '../components/ModalMessage'
+import { dispatchSetUsers } from '../../store/actions/users';
+import { dispatchLoginStarted, dispatchLoginEnded } from  '../../store/actions/login';
+import API_URL from '../../config';
+import ModalMessage from '../ModalMessage'
 
 class LoginForm extends Component {
 

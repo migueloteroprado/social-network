@@ -1,10 +1,10 @@
 import { Redirect } from 'react-router-dom';
 import React, { Component } from 'react';
 import { connect }  from 'react-redux';
-import { dispatchAddArticle } from '../store/actions/articles';
-import UserDetail from './UserDetail'
-import Article from './Article';
-import ArticleForm from './ArticleForm';
+import { dispatchAddArticle } from '../../store/actions/articles';
+import UserDetail from '../authors/AuthorDetail'
+import ArticleList from '../articles/ArticleList'
+import ArticleForm from '../articles/ArticleForm';
 
 class Profile extends Component {
   state = {
@@ -29,17 +29,8 @@ class Profile extends Component {
               <UserDetail user={user} />
             </section>
             <section>
-              <header>
-                <h4>Articles</h4>
-              </header>
               <ArticleForm onAddArticle={this.onAddArticle} showMessage={this.state.articleAdded}/>
-              {
-                this.props.articles.articles.length === 0
-                  ? <h5>No articles</h5>
-                  : filteredArticles.map(article => (
-                    <Article article={article} key={article.id} />
-                  ))
-              }
+              <ArticleList articles={filteredArticles} />
             </section>
           </div>
         : <Redirect to="/login" />

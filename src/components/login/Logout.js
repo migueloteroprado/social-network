@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect }  from 'react-redux';
-import { dispatchLogout } from '../store/actions/login';
-import ModalMessage from './ModalMessage'
+import { dispatchLogout } from '../../store/actions/login';
+import ModalMessage from '../ModalMessage'
 
 class Logout extends Component {
 

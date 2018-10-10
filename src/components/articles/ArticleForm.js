@@ -26,7 +26,7 @@ class ArticleForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <h5>Add a new Article:</h5>
+        <h4>Add a new Article:</h4>
         <div>
           <label htmlFor="title">Title <input type="text" name="title" id="title" onChange={this.handleInput} required /></label>
         </div>
