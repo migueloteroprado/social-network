@@ -1,12 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import NotFound from './NotFound'
 import Subscription from './Subscription'
 import Article from './Article'
 import getSubscriptionState from '../utils/subscriptions'
-import { actionAddArticle } from '../store/actions/articles'
-
 
 class UserDetail extends React.Component {
 
@@ -14,15 +11,14 @@ class UserDetail extends React.Component {
     const currentUser = this.props.login.currentUser
     const user = this.getUser()
     const subscriptions = this.props.subscriptions.subscriptions
-    const requests = this.props.requests.requests
-    const subscriptionState = getSubscriptionState(currentUser, user, subscriptions, requests)
+    const subscriptionState = getSubscriptionState(currentUser, user, subscriptions)
     return (
-      this.props.login.isLogged
+      this.props.login.currentUser
         ? user 
           ? <React.Fragment>
               <section>
-                <img src={user.picture.large} alt={`${user.name.first} ${user.name.last}`}/>
-                <h5>{`${user.name.first} ${user.name.last}`}</h5>
+                <img src={user.picture.large} alt={this.getName()}/>
+                <h5>{this.getName()}</h5>
                 <Subscription user={user} subscriptionState={subscriptionState}/>
                 <div><p>Phone: {user.phone}</p></div>
                 <div><p>Cell: {user.cell}</p></div>
@@ -33,7 +29,7 @@ class UserDetail extends React.Component {
                 <div><p>Nationality: {user.nat}</p></div>
               </section>
               {
-                subscriptionState === 'subscribed'
+                subscriptionState === 'accepted'
                 ? <section>
                     <header>
                       <h4>Articles</h4>
@@ -46,7 +42,6 @@ class UserDetail extends React.Component {
                   </section>
                 : null
               }
-
             </React.Fragment>
           : <Redirect to="/users" />
         : <Redirect to="/login" />
@@ -54,11 +49,12 @@ class UserDetail extends React.Component {
   }
 
   getArticles = () => {
-    return this.props.articles.articles.filter(article => article.author === this.props.login.currentUser.login.uuid)
+    const user = this.getUser()
+    return this.props.articles.articles.filter(article => article.author === user.login.uuid)
   }
 
   userExists = () => {
-    if (!this.props.login.isLogged) {
+    if (!this.props.login.currentUser) {
       return null
     }
     const userSearch = this.props.users.userList.filter(user => user.login.currentUser.uuid === this.props.match.params.uuid)
@@ -69,7 +65,7 @@ class UserDetail extends React.Component {
     }
   }
 
-  getUser= () => {
+  getUser = () => {
     if (this.props.user) {
       return this.props.user
     } else if (this.props.location.state && this.props.location.state.user) {
@@ -79,9 +75,11 @@ class UserDetail extends React.Component {
     }
   }
 
+  getName = (user) => (user ? `${user.name.first} ${user.name.last}` : '')
+
 } 
 
 export default connect(
-  state => ({ login: state.login, users: state.users, subscriptions: state.subscriptions, requests: state.requests, articles: state.articles })
+  state => ({ login: state.login, users: state.users, subscriptions: state.subscriptions, articles: state.articles })
 )(UserDetail);
 

@@ -8,7 +8,6 @@ import ErrorBoundary from './ErrorBoundary'
 import store from '../store';
 import { dispatchLoadArticles } from '../store/actions/articles';
 import { dispatchLoadSubscriptions } from '../store/actions/subscriptions';
-import { dispatchLoadRequests } from '../store/actions/requests';
 
 class SocialNetwork extends Component {
   render() {
@@ -31,7 +30,6 @@ class SocialNetwork extends Component {
     // Get data from localStorage
     this.getLocalStorageArticles();
     this.getLocalStorageSubscriptions();
-    this.getLocalStorageRequests();
 
     const self = this;
     window.addEventListener('storage', (event) => {  
@@ -40,9 +38,6 @@ class SocialNetwork extends Component {
       }
       if (event.key === 'social.subscriptions') {
         self.getLocalStorageSubscriptions();
-      }
-      if (event.key === 'social.articles') {
-        self.getLocalStorageRequests();
       }
     });
 
@@ -76,32 +71,15 @@ class SocialNetwork extends Component {
     }
     this.props.loadSubscriptions(subscriptions);
   }
-
-  getLocalStorageRequests() {
-    let requests = [];
-    try {
-      const storageRequests = localStorage.getItem('social.requests');
-      if (storageRequests) 
-      requests = JSON.parse(storageRequests);
-    }
-    catch (error) {
-      requests = [];
-    }
-    this.props.loadRequests(requests);
-  }  
-
 }
 
 export default connect(
   state => ({ 
-    users: state.users,
-    login: state.login,
     articles: state.articles,
-    subscriptions: state.subscriptions,
-    requests: state.requests }),
+    subscriptions: state.subscriptions 
+  }),
   dispatch => ({
     loadArticles: (articles) => dispatchLoadArticles(articles),
-    loadSubscriptions: (subscriptions) => dispatchLoadSubscriptions(subscriptions),
-    loadRequests: (requests) => dispatchLoadRequests(requests),
+    loadSubscriptions: (subscriptions) => dispatchLoadSubscriptions(subscriptions)
   })
 )(SocialNetwork);

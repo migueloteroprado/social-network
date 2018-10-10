@@ -1,43 +1,67 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { dispatchRemoveSubscription } from '../store/actions/subscriptions';
-import { dispatchAddRequest } from '../store/actions/requests';
+import { dispatchRemoveSubscription, dispatchAddSubscription } from '../store/actions/subscriptions';
 
 class Subscription extends Component {
 
   state = {
-    subscriptionState: ''
+    subscriptionState: 'unsubscribed'
   }
   
   render() {
-    return (
-      <div>
-      {
-        this.state.subscriptionState === 'subscribed'
-          ? <p>Subscribed</p>
-          : this.state.subscriptionState === 'pending'
-            ? <p>Subscription Pending</p>
-            : this.state.subscriptionState === 'currentUser'
-              ? <p>This is You</p>
-              : <button onClick={this.handleRequest}>Request Subscription</button> 
-      }
-      </div>)
+    switch (this.state.subscriptionState) {
+      case 'unsubscribed':
+        return (
+          <div>
+            <span>Unsubscribed</span>
+            <button onClick={this.requestSubscription}>Request Subscription</button> 
+          </div>
+        )
+      case 'accepted':
+        return (
+          <div>
+            <p>Subscribed</p>
+            <button onClick={this.removeSubscription}>Remove Subscription</button>
+          </div>
+        )
+      case 'pending':
+        return (
+          <div>
+            <p>Request Pending</p>
+            <button onClick={this.removeSubscription}>Cancel Request</button>
+          </div>
+        )
+      case 'rejected':
+        return (
+          <div>
+            <p>Request Rejected</p>
+            <button onClick={this.requestSubscription}>Request Subscription</button> 
+          </div>
+        )
+      default:
+        return null;
+    }
   }
 
   componentDidMount = () => {
     this.setState({subscriptionState: this.props.subscriptionState })
   }
 
-  handleRequest = () => {
+  requestSubscription = () => {
     this.setState({ subscriptionState: 'pending' })
-    this.props.onRequestSubscription({ from: this.props.login.currentUser.login.uuid, to: this.props.user.login.uuid, status: 'pending' })
+    this.props.onAddSubscription({ user: this.props.user.login.uuid, subscriptor: this.props.login.currentUser.login.uuid, state: 'pending' })
   }
+  removeSubscription = () => {
+    this.setState({ subscriptionState: 'unsubscribed' })
+    this.props.onRemoveSubscription({ user: this.props.user.login.uuid, subscriptor: this.props.login.currentUser.login.uuid })
+  }
+
 }
 
 export default connect(
-  state => ({subscriptions: state.subscriptions, requests: state.requests, login: state.login}),
+  state => ({subscriptions: state.subscriptions, login: state.login}),
   dispatch => ({
-    onRequestSubscription: (request) => dispatchAddRequest(request),
+    onAddSubscription: (subscription) => dispatchAddSubscription(subscription),
     onRemoveSubscription: (subscription) => dispatchRemoveSubscription(subscription),
   })
 )(Subscription)

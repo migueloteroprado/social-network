@@ -24,14 +24,14 @@ class Navbar extends Component {
               <NavLink exact className="nav-link" to='/profile'>Profile</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink exact className="nav-link" to='/pending-requests'>Pending Requests</NavLink>
+              <NavLink exact className="nav-link" to='/requests'>Pending Requests</NavLink>
             </li>
           </ul>
 
           <ul className="navbar-nav menu navbar-right">
             <li className="nav-item">
               { 
-                this.props.login.isLogged
+                this.props.login.currentUser
                 ? <NavLink exact className="nav-link" to="/logout">Logout</NavLink>
                 : <NavLink exact className="nav-link" to="/login">Login</NavLink>
               }

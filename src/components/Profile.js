@@ -8,11 +8,17 @@ import ArticleForm from './ArticleForm';
 
 class Profile extends Component {
   state = {
-    user: this.props.login.currentUser,
     articleAdded: false
   }
   render() {
-    const user = this.state.user || null;
+    const user = this.props.login.currentUser
+
+    let filteredArticles = [];
+    if (user) {
+      const articles = this.props.articles.articles;
+      filteredArticles = articles.filter(article => article.author === user.login.uuid)
+    }
+
     return (
       this.props.login.currentUser 
         ? <div>
@@ -28,13 +34,11 @@ class Profile extends Component {
               </header>
               <ArticleForm onAddArticle={this.onAddArticle} showMessage={this.state.articleAdded}/>
               {
-                this.state.articles === null 
-                  ? <h5>Loading...</h5>
-                  : this.props.articles.articles.length === 0
-                    ? <h5>No articles</h5>
-                    : this.props.articles.articles.map(article => (
-                      <Article article={article} key={article.id} />
-                    ))
+                this.props.articles.articles.length === 0
+                  ? <h5>No articles</h5>
+                  : filteredArticles.map(article => (
+                    <Article article={article} key={article.id} />
+                  ))
               }
             </section>
           </div>
@@ -43,14 +47,6 @@ class Profile extends Component {
   }
 
   getName = (user) => (`${user.name.first} ${user.name.last}`)
-
-  componentDidMount() {
-    if (this.state.user) {
-      const articles = this.props.articles.articles;
-      const filteredArticles = articles.filter(article => article.author === this.state.user.login.uuid)
-      this.setState({ ...this.state, articles: filteredArticles })
-    }
-  }
 
   onAddArticle = (title, content) => {
     const article = { id: this.props.articles.id+1, author: this.props.login.currentUser.login.uuid, title, content }

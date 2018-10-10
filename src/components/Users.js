@@ -10,7 +10,11 @@ const Users = (props) => {
           <h3>Users</h3>
           <div>
             {
-              props.users.userList.map(user => (<User user={user} key={user.login.uuid} {...props}/>))
+              props.users.userList.map(user => (
+                user.login.uuid === props.login.currentUser.login.uuid
+                  ? null
+                  : <User user={user} key={user.login.uuid} {...props}/>
+              ))
             }
           </div>
         </div>

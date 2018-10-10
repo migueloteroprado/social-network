@@ -7,6 +7,7 @@ import Logout from '../components/Logout'
 import Users from '../components/Users';
 import UserDetail from '../components/UserDetail';
 import Profile from '../components/Profile';
+import Requests from '../components/Requests';
 import NotFound from '../components/NotFound';
 
 const Main = props => {
@@ -40,6 +41,11 @@ const Main = props => {
         />
         <Route
           exact
+          path="/requests"
+          component={Requests}
+        />
+        <Route
+          exact
           path="/logout"
           component={Logout}
         />
@@ -56,6 +62,6 @@ export default withRouter(
     state => ({
       users: state.users,
       login: state.login
-    }), { /*authUser, removeError*/ }
+    })
   )(Main)
 );

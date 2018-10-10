@@ -2,7 +2,6 @@ import { LOGIN_STARTED, LOGIN_ERROR, LOGIN_SUCCESS, LOGIN_ENDED, LOGOUT } from '
 
 const initialState = {
   isLogging: false,
-  isLogged: false,
   currentUser: null,
   error: null
 }
@@ -13,7 +12,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         currentUser: null,
-        isLogged: false,
         isLogging: true,
         error: null
       }    
@@ -22,13 +20,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         currentUser: action.user,
-        isLogged: true,
         isLogging: false
       }
     case LOGIN_ERROR:
       return {
         ...state,
-        isLogged: false,
         isLogging: false,
         error: 'User or Password Incorrect...'
       };
@@ -36,7 +32,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLogging: false,
-        isLogged: true,
         error: null
       };
     case LOGOUT: {
@@ -44,7 +39,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         currentUser: null,
-        isLogged: false,
         isLogging: false,
         error: null
       }

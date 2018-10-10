@@ -22,7 +22,7 @@ class LoginForm extends Component {
   };
 
   handleMessageOK = () => {
-    if (this.props.login.isLogged) {
+    if (this.props.login.currentUser) {
       this.props.history.push("/users");
     } else {
       this.props.onReset();
@@ -31,13 +31,12 @@ class LoginForm extends Component {
 
   render() {
     return (
-      this.props.login.currentUser && this.props.login.isLogged
-      ? <ModalMessage message="Loged In successfully" onClose={this.handleMessageOK}/>
-      : this.props.login.error
-        ? <ModalMessage message={this.props.login.error} buttonCaption="Try Again" onClose={this.handleMessageOK}/>
-        : this.state.loading
-          ? <h1>Loading...</h1>
-          : <form onSubmit={this.handleSubmit}>
+      this.props.login.currentUser
+      ? <ModalMessage message="Loged In successfully" /* showButton={true} onClose={this.handleMessageOK} *//> 
+      : this.state.loading
+        ? <h1>Loading...</h1>
+        : <React.Fragment>
+            <form onSubmit={this.handleSubmit}>
               <div>
                 <label>User Name
                   <input type="text" id="userName" value={this.state.userName} onChange={this.handleInput} required/>
@@ -50,6 +49,12 @@ class LoginForm extends Component {
               </div>
               <input type="submit" disabled={this.props.login.isLogging} value="Login" />
             </form>
+            { 
+              this.props.login.error
+                ? <ModalMessage message={this.props.login.error} />
+                : null
+            }
+          </React.Fragment>
     );
   }
 
