@@ -8,7 +8,7 @@ class LoginForm extends Component {
 
   state = {
     userName: 'smallswan392',
-    password: 'freedom'
+    password: 'freedom',
   };
 
   handleInput = (event) => {
@@ -21,11 +21,19 @@ class LoginForm extends Component {
     this.props.onLogin(this.state.userName, this.state.password)
   };
 
+  resetMessage = () => {
+    this.setState({showMessage: false })
+    this.props.onReset();
+  }
+
   render() {
     return (
       this.props.login.currentAuthor
       ? <Message message="Loged In successfully" /* showButton={true} onClose={this.handleMessageOK} *//> 
       : <React.Fragment>
+          <header className="page-title">
+            <h3>Login</h3>
+          </header>
           <form id="loginForm" onSubmit={this.handleSubmit}>
             <div className="form-group">
               <label>
@@ -38,17 +46,21 @@ class LoginForm extends Component {
                 <input type="password" className="form-control" id="password" value={this.state.password} onChange={this.handleInput} required/>
               </label>
             </div>
-            <div className="form-group">
-              <button className="btn btn-secondary btn-sm" type="submit" disabled={this.props.login.isLogging}>Login</button>
-            </div>
-          </form>
-          {
+            {
             this.props.login.error
             ? <div className="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Login or Password Incorrect...</strong>
+                <strong>User name or Password Incorrect</strong>
+                <button className="close" data-dismiss="alert" aria-label="Close" onClick={this.resetMessage}>
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
             : null
           }
+
+            <div className="form-group">
+              <button className="btn btn-primary" type="submit" disabled={this.props.login.isLogging}>Login</button>
+            </div>
+          </form>
         </React.Fragment>
     );
   }

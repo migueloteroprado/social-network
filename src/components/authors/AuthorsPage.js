@@ -3,13 +3,16 @@ import React from 'react';
 import { connect }  from 'react-redux';
 import Author from './Author';
 import { getSubscriptionState } from '../../utils/utils'
+import './AuthorsPage.scss'
 
 const AuthorsPage = ({ authors, currentAuthor, subscriptions }) => {
   return (
     currentAuthor
       ? <div>
-          <h3>Authors</h3>
-          <div>
+          <header className="page-title">
+            <h3>Authors</h3>
+          </header>
+          <section className="author-list">
             {
               // Order authors by subscription state, subscribed first
               authors
@@ -21,7 +24,7 @@ const AuthorsPage = ({ authors, currentAuthor, subscriptions }) => {
                   : <Author author={author} key={author.login.uuid} />
               ))
             }
-          </div>
+          </section>
         </div>
       : <Redirect to="/login" />
   )

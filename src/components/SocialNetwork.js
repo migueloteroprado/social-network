@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import NavBar from './common/NavBar';
 import Main from './common/Main';
-import './SocialNetwork.css'
+import './SocialNetwork.scss'
 import { Provider, connect } from 'react-redux';
 import ErrorBoundary from './common/ErrorBoundary'
 import Message from './common/Message'
