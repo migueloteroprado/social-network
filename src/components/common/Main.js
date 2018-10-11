@@ -1,14 +1,15 @@
-import React from "react";
-import { Switch, Route, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import HomePage from "./HomePage";
-import LoginForm from "../login/LoginForm";
+import React from "react"
+import { Switch, Route, withRouter } from "react-router-dom"
+import { connect } from "react-redux"
+import HomePage from "./HomePage"
+import LoginForm from "../login/LoginForm"
 import Logout from '../login/Logout'
-import AuthorsPage from '../authors/AuthorsPage';
-import AuthorDetailPage from '../authors/AuthorDetailPage';
-import ProfilePage from '../profile/ProfilePage';
-import RequestsPage from '../requests/RequestsPage';
-import NotFound from './NotFound';
+import AuthorsPage from '../authors/AuthorsPage'
+import AuthorDetailPage from '../authors/AuthorDetailPage'
+import ProfilePage from '../profile/ProfilePage'
+import RequestsPage from '../requests/RequestsPage'
+import NotFound from './NotFound'
+import './Main.scss'
 
 const Main = (props) => {
   return (

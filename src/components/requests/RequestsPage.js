@@ -26,8 +26,8 @@ class RequestsPage extends Component {
                   getName(getAuthorByUUID(subscription.subscriptor, authors))
 
                 }
-                <button type="button" onClick={(event) => this.handleAccept(event, subscription)}>Accept</button>
-                <button type="button" onClick={(event) => this.handleReject(event, subscription)}>Reject</button>
+                <button className='btn btn-secondary btn-sm' onClick={(event) => this.handleAccept(event, subscription)}>Accept</button>
+                <button className='btn btn-secondary btn-sm' onClick={(event) => this.handleReject(event, subscription)}>Reject</button>
               </div>)
             : <p>No pending requests</p>
           }

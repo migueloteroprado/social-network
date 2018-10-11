@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './ArticleForm.scss'
 
 class ArticleForm extends Component {
 
@@ -27,20 +28,24 @@ class ArticleForm extends Component {
     return (
       <form id="articleForm" onSubmit={this.handleSubmit}>
         <h4>Add a new Article:</h4>
-        <div>
-          <label htmlFor="title">Title <input type="text" name="title" id="title" onChange={this.handleInput} required /></label>
+        <div className="form-group">
+          <label htmlFor="title">
+          Title 
+          <input type="text" className="form-control" name="title" id="title" onChange={this.handleInput} required /></label>
         </div>
-        <div>
-          <label htmlFor="content">Content <textarea name="content" id="content" onChange={this.handleInput} required /></label>
+        <div className="form-group">
+          <label htmlFor="content">
+          Content 
+          <textarea className="form-control" name="content" id="content" onChange={this.handleInput} required /></label>
         </div>
-        <div>
-          <input type="submit" value="Add Article" />
+        <div className="form-group">
+          <button type="submit" className="btn btn-secondary btn-sm">Add Article</button>
         </div>
         <div>
           {this.state.showMessage
             ? <div className="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Article Added</strong>
-                <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={this.resetMessage}>
+                <button className="close" data-dismiss="alert" aria-label="Close" onClick={this.resetMessage}>
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>

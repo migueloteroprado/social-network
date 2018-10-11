@@ -14,28 +14,28 @@ class Subscription extends Component {
         return (
           <div>
             <span>Unsubscribed</span>
-            <button onClick={this.requestSubscription}>Request Subscription</button> 
+            <button className='btn btn-secondary btn-sm' onClick={this.requestSubscription}>Request Subscription</button> 
           </div>
         )
       case 'accepted':
         return (
           <div>
             <p>Subscribed</p>
-            <button onClick={this.removeSubscription}>Remove Subscription</button>
+            <button className='btn btn-secondary btn-sm' onClick={this.removeSubscription}>Remove Subscription</button>
           </div>
         )
       case 'pending':
         return (
           <div>
             <p>Request Pending</p>
-            <button onClick={this.removeSubscription}>Cancel Request</button>
+            <button className='btn btn-secondary btn-sm' onClick={this.removeSubscription}>Cancel Request</button>
           </div>
         )
       case 'rejected':
         return (
           <div>
             <p>Request Rejected</p>
-            <button onClick={this.requestSubscription}>Request Subscription</button> 
+            <button className='btn btn-secondary btn-sm' onClick={this.requestSubscription}>Request Subscription</button> 
           </div>
         )
       default:

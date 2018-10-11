@@ -5,7 +5,7 @@ const Message = (props) =>
     <h3>{props.message}</h3>
     {
       props.showButton 
-        ? <button onClick={props.onClose}>{props.buttonCaption || 'OK'}</button>
+        ? <button className='btn btn-secondary' onClick={props.onClose}>{props.buttonCaption || 'OK'}</button>
         : null
     }
     
