@@ -32,7 +32,7 @@ class Navbar extends Component {
           <ul className="navbar-nav menu navbar-right">
             <li className="nav-item">
               { 
-                this.props.login.currentAuthor
+                this.props.currentAuthor
                 ? <NavLink exact className="nav-link" to="/logout">Logout</NavLink>
                 : <NavLink exact className="nav-link" to="/login">Login</NavLink>
               }
@@ -47,6 +47,6 @@ class Navbar extends Component {
 
 export default withRouter(connect(
   state => ({ 
-    login: state.login
+    currentAuthor: state.login.currentAuthor
   })
 )(Navbar));

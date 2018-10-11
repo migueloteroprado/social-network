@@ -1,4 +1,4 @@
-import { LOGIN_STARTED, LOGIN_ERROR, LOGIN_SUCCESS, LOGIN_ENDED, LOGOUT } from '../actionTypes';
+import { LOGIN_STARTED, LOGIN_ERROR, LOGIN_SUCCESS, LOGIN_RESET, LOGOUT } from '../actionTypes';
 
 const initialState = {
   isLogging: false,
@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
         error: null
       }    
     case LOGIN_SUCCESS:
-sessionStorage.setItem('social.currentAuthor', JSON.stringify(action.author))
+      sessionStorage.setItem('social.currentAuthor', JSON.stringify(action.author))
       return {
         ...state,
         currentAuthor: action.author,
@@ -28,14 +28,14 @@ sessionStorage.setItem('social.currentAuthor', JSON.stringify(action.author))
         isLogging: false,
         error: 'User name or Password Incorrect...'
       };
-    case LOGIN_ENDED:
+    case LOGIN_RESET:
       return {
         ...state,
         isLogging: false,
         error: null
       };
     case LOGOUT: {
-sessionStorage.removeItem('social.currentAuthor')
+      sessionStorage.removeItem('social.currentAuthor')
       return {
         ...state,
         currentAuthor: null,

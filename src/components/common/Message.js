@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ModalMessage = (props) => 
+const Message = (props) => 
   <div>
     <h3>{props.message}</h3>
     {
@@ -11,4 +11,4 @@ const ModalMessage = (props) =>
     
   </div>
 
-export default ModalMessage;
+export default Message;

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Subscription from './Subscription'
 import { getSubscriptionState, getName } from '../../utils/utils'
 
-const Author = ({match: {path}, author, login: {currentAuthor}, subscriptions: {subscriptions}}) => (
+const Author = ({match: {path}, author, currentAuthor, subscriptions}) => (
   <div>
     <img src={author.picture.thumbnail} alt={getName(author)}/>
 
@@ -20,6 +20,6 @@ const Author = ({match: {path}, author, login: {currentAuthor}, subscriptions: {
 
 export default withRouter(
   connect(
-    state => ({ login: state.login, subscriptions: state.subscriptions })
+    state => ({ currentAuthor: state.login.currentAuthor, subscriptions: state.subscriptions.subscriptions })
   )(Author)
 )

@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Article = (props) =>
+const Article = ({article}) =>
   (<article>
     <header>
-      <h5>{props.article.title}</h5>
+      <h5>{article.title}</h5>
     </header>
     <div>
-      <p>{props.article.content}</p>
+      <p>{article.content}</p>
     </div>
   </article>)
 

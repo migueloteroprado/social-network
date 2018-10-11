@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import NavBar from './NavBar';
-import Main from './Main';
+import NavBar from './common/NavBar';
+import Main from './common/Main';
 import './SocialNetwork.css'
 import { Provider, connect } from 'react-redux';
-import ErrorBoundary from './ErrorBoundary'
-import ModalMessage from './ModalMessage'
+import ErrorBoundary from './common/ErrorBoundary'
+import Message from './common/Message'
 import store from '../store';
 import { dispatchSetAuthors } from '../store/actions/authors';
 import { dispatchLoginSuccess } from '../store/actions/login';
@@ -30,11 +30,9 @@ class SocialNetwork extends Component {
     // Get data from localStorage
     this.getLocalStorageArticles();
     this.getLocalStorageSubscriptions();
-    
   }
 
   render() {
-    
     return (
       <Provider store={store}>
         <BrowserRouter>
@@ -44,9 +42,9 @@ class SocialNetwork extends Component {
               }>
               {
                 this.state.loadingAuthors 
-                  ? <ModalMessage message="Loading ..."></ModalMessage>
+                  ? <Message message="Loading ..."/>
                   : this.state.error
-                    ? <ModalMessage message={this.state.error}></ModalMessage>
+                    ? <Message message={this.state.error}/>
                     : <React.Fragment>
                         <NavBar />
                         <Main />
@@ -60,23 +58,11 @@ class SocialNetwork extends Component {
   }
 
   componentDidMount = () => {
-
     // If authors list was not loaded from API, then load it
-    if (this.props.authors.authors.length === 0) {
+    if (this.props.authors.length === 0) {
       this.loadAuthors();
     }
-
-
-/*
-    // get authorLogged from sessionStorage
-    const authorLogged = sessionStorage.getItem('social.currentAuthor')
-    if (authorLogged) {
-      this.props.setLoggedAuthor(JSON.parse(authorLogged))
-    }
-*/
-
   }
-
 
   loadAuthors = async () => {
     // Request authors from API
@@ -89,7 +75,6 @@ class SocialNetwork extends Component {
       }
       this.setState({ error: null })
     } catch(err) {
-      console.log(err);
       this.setState({ error: 'There was an Error getting Authors Data' })
     } finally {
       this.setState({ loadingAuthors: false })
@@ -129,10 +114,8 @@ class SocialNetwork extends Component {
 }
 
 export default connect(
-  state => ({ 
-    authors: state.authors,
-    articles: state.articles,
-    subscriptions: state.subscriptions 
+  state => ({
+    authors: state.authors.authors
   }),
   dispatch => ({
     onSetAuthors: (authors) => dispatchSetAuthors(authors),

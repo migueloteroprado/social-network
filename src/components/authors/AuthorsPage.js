@@ -4,7 +4,7 @@ import { connect }  from 'react-redux';
 import Author from './Author';
 import { getSubscriptionState } from '../../utils/utils'
 
-const Authors = ({ authors: {authors}, login: {currentAuthor}, subscriptions: {subscriptions} }) => {
+const AuthorsPage = ({ authors, currentAuthor, subscriptions }) => {
   return (
     currentAuthor
       ? <div>
@@ -27,5 +27,5 @@ const Authors = ({ authors: {authors}, login: {currentAuthor}, subscriptions: {s
   )
 }
 export default connect(
-  state => ({ authors: state.authors, login: state.login, subscriptions: state.subscriptions})
-)(Authors);
+  state => ({ authors: state.authors.authors, currentAuthor: state.login.currentAuthor, subscriptions: state.subscriptions.subscriptions})
+)(AuthorsPage);

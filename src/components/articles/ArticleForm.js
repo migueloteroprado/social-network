@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 class ArticleForm extends Component {
 
@@ -17,6 +16,7 @@ class ArticleForm extends Component {
     event.preventDefault()
     this.props.onAddArticle(this.state.title, this.state.content)
     this.setState({showMessage: true})
+    document.querySelector('#articleForm').reset();
   }
 
   resetMessage = () => {
@@ -25,7 +25,7 @@ class ArticleForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form id="articleForm" onSubmit={this.handleSubmit}>
         <h4>Add a new Article:</h4>
         <div>
           <label htmlFor="title">Title <input type="text" name="title" id="title" onChange={this.handleInput} required /></label>
@@ -38,7 +38,7 @@ class ArticleForm extends Component {
         </div>
         <div>
           {this.state.showMessage
-            ? <div className="alert alert-warning alert-dismissible fade show" role="alert">
+            ? <div className="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Article Added</strong>
                 <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={this.resetMessage}>
                   <span aria-hidden="true">&times;</span>
@@ -52,6 +52,4 @@ class ArticleForm extends Component {
   }
 }
 
-export default connect(
-  state => ({ articles: state.articles})
-)(ArticleForm);
+export default ArticleForm;

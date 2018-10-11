@@ -49,17 +49,17 @@ class Subscription extends Component {
 
   requestSubscription = () => {
     this.setState({ subscriptionState: 'pending' })
-    this.props.onAddSubscription({ author: this.props.author.login.uuid, subscriptor: this.props.login.currentAuthor.login.uuid, state: 'pending' })
+    this.props.onAddSubscription({ author: this.props.author.login.uuid, subscriptor: this.props.currentAuthor.login.uuid, state: 'pending' })
   }
   removeSubscription = () => {
     this.setState({ subscriptionState: 'unsubscribed' })
-    this.props.onRemoveSubscription({ author: this.props.author.login.uuid, subscriptor: this.props.login.currentAuthor.login.uuid })
+    this.props.onRemoveSubscription({ author: this.props.author.login.uuid, subscriptor: this.props.currentAuthor.login.uuid })
   }
 
 }
 
 export default connect(
-  state => ({subscriptions: state.subscriptions, login: state.login}),
+  state => ({currentAuthor: state.login.currentAuthor}),
   dispatch => ({
     onAddSubscription: (subscription) => dispatchAddSubscription(subscription),
     onRemoveSubscription: (subscription) => dispatchRemoveSubscription(subscription),

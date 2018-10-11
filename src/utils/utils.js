@@ -1,3 +1,4 @@
+// Get author subscription state
 export const getSubscriptionState = (currentAuthor, author, subscriptions) => {
   if (!author || !currentAuthor || !subscriptions) {
     return null
@@ -16,4 +17,11 @@ export const getSubscriptionState = (currentAuthor, author, subscriptions) => {
   }
 }
 
+// Compose full name from first and last names
 export const getName = (author) => (author ? `${author.name.first} ${author.name.last}` : '')
+
+// Returns a user given its UUID
+export const getAuthorByUUID = (uuid, authors) => {
+  const authorFiltered = authors.filter(author => author.login.uuid === uuid)
+  return authorFiltered.length > 0 ? authorFiltered[0] : null
+}

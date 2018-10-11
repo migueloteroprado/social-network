@@ -1,19 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Redirect, withRouter } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import Subscription from './Subscription'
 import ArticleList from '../articles/ArticleList'
 import { getSubscriptionState, getName } from '../../utils/utils'
 
 class AuthorDetail extends React.Component {
 
+  //render({login: {currentAuthor}, subscriptions: {subscriptions}, articles: {articles}, author}) {
   render() {
-    const currentAuthor = this.props.login.currentAuthor
-    const author = this.getAuthor()
-    const subscriptions = this.props.subscriptions.subscriptions
+    const {
+      currentAuthor,
+      subscriptions,
+      articles,
+      author
+    } = this.props;
     const subscriptionState = getSubscriptionState(currentAuthor, author, subscriptions)
     return (
-      this.props.login.currentAuthor
+      currentAuthor
         ? author 
           ? <React.Fragment>
               <section>
@@ -30,7 +34,8 @@ class AuthorDetail extends React.Component {
               </section>
               {
                 subscriptionState === 'accepted'
-                ? <ArticleList articles={this.getArticles()} />
+                // filter articles of the current author
+                ? <ArticleList articles={articles.filter(article => article.author === author.login.uuid)} />
                 : null
               }
             </React.Fragment>
@@ -38,42 +43,14 @@ class AuthorDetail extends React.Component {
         : <Redirect to="/login" />
     )
   }
-  // filter articles
-  getArticles = () => {
-    const author = this.getAuthor()
-    return this.props.articles.articles.filter(article => article.author === author.login.uuid)
-  }
-
-  authorExists = () => {
-    if (!this.props.login.currentAuthor) {
-      return null
-    }
-    const authorSearch = this.props.authors.authors.filter(author => author.login.currentAuthor.uuid === this.props.match.params.uuid)
-    if (authorSearch.length > 0) {
-      return authorSearch[0]
-    } else {
-      return null
-    }
-  }
-
-  getAuthor = () => {
-    // Get the author
-    // If this component is invoked from Profile Page, it will be the current user and will come from reducer
-    // If it is invoked from author detail, it will be come from props.location.state of the NavLink
-    if (this.props.author) {
-      return this.props.author
-    } else if (this.props.location.state && this.props.location.state.author) {
-      return this.props.location.state.author
-    } else {
-      return null
-    }
-  }
-
 } 
 
-export default withRouter(
-  connect(
-    state => ({ login: state.login, authors: state.authors, subscriptions: state.subscriptions, articles: state.articles })
-  )(AuthorDetail)
-);
+export default connect(
+  state => ({ 
+    currentAuthor: state.login.currentAuthor,
+    subscriptions: state.subscriptions.subscriptions,
+    articles: state.articles.articles
+  })
+)(AuthorDetail)
+
 

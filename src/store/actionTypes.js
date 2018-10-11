@@ -3,7 +3,7 @@ export const SET_AUTHORS = 'SET_AUTHORS';
 export const LOGIN_STARTED = 'LOGIN_STARTED';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_ENDED = 'LOGIN_ENDED';
+export const LOGIN_RESET = 'LOGIN_RESET';
 export const LOGOUT = 'LOGOUT';
 
 export const LOAD_ARTICLES = 'LOAD_ARTICLES';

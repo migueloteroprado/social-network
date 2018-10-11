@@ -1,5 +1,5 @@
-import { LOGIN_STARTED, LOGIN_ERROR, LOGIN_SUCCESS, LOGIN_ENDED, LOGOUT } from '../actionTypes';
-import store from '..';
+import { LOGIN_STARTED, LOGIN_ERROR, LOGIN_SUCCESS, LOGIN_RESET, LOGOUT } from '../actionTypes'
+import store from '..'
 
 // Action Creators
 
@@ -20,8 +20,8 @@ export const actionLoginSuccess = (author) => ({
   author
 })
 
-export const actionLoginEnded = () => ({
-  type: LOGIN_ENDED
+export const actionLoginReset = () => ({
+  type: LOGIN_RESET
 })
 
 export const actionLogout = () => ({
@@ -31,34 +31,34 @@ export const actionLogout = () => ({
 // Action Dispatchers
 
 export const dispatchLoginStarted = (userName, password) => dispatch => {
-  dispatch(actionLoginStarted(userName, password));
-  const author = checkLogin(userName, password);
+  dispatch(actionLoginStarted(userName, password))
+  const author = checkLogin(userName, password)
   if (author) {
     dispatch(actionLoginSuccess(author))
   } else {
-    dispatch(actionLoginError());
+    dispatch(actionLoginError())
   }
 }
 
 export const dispatchLoginError = (userName, password) => {
-  store.dispatch(actionLoginError(userName, password));
+  store.dispatch(actionLoginError(userName, password))
 }
 
 export const dispatchLoginSuccess = (author) => {
-  store.dispatch(actionLoginSuccess(author));
+  store.dispatch(actionLoginSuccess(author))
 }
 
-export const dispatchLoginEnded = (author) => {
-  store.dispatch(actionLoginEnded(author));
+export const dispatchLoginReset = (author) => {
+  store.dispatch(actionLoginReset(author))
 }
 
 export const dispatchLogout = () => {
-  store.dispatch(actionLogout());
+  store.dispatch(actionLogout())
 }
 
 const checkLogin = (userName, password) => {
   const authors = store.getState().authors.authors;
   const author = authors.filter(
     author => author.login.username === userName && author.login.password === password)
-  return author && author.length > 0 ? author[0] : null;
+  return author && author.length > 0 ? author[0] : null
 }
