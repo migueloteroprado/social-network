@@ -1,10 +1,11 @@
 import React from 'react';
 import Article from './Article'
+import './ArticleList.scss'
 
 const ArticleList = ({articles}) =>
-  <section>
-    <header>
-      <h4>Articles</h4>
+  <section className="articles-list">
+    <header className="articles-header">
+      <h5>Articles</h5>
     </header>
     {
       articles.length === 0

@@ -9,7 +9,7 @@ const AuthorsPage = ({ authors, currentAuthor, subscriptions }) => {
     currentAuthor
       ? <div>
           <header className="page-title">
-            <h3>Authors</h3>
+            <h4>Authors</h4>
           </header>
           <section className="author-list">
             {

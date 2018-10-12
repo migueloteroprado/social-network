@@ -27,13 +27,17 @@ class LoginForm extends Component {
     this.props.onReset();
   }
 
+  handleLoginOK = () => {
+    this.props.history.push('/authors')
+  }
+
   render() {
     return (
       this.props.login.currentAuthor
-      ? <Message message="Loged In successfully" /* showButton={true} onClose={this.handleMessageOK} *//> 
+      ? <Message message="Loged In successfully" showButton={true} closeFn={() => this.handleLoginOK()}/>
       : <React.Fragment>
           <header className="page-title">
-            <h3>Login</h3>
+            <h4>Login</h4>
           </header>
           <form id="loginForm" onSubmit={this.handleSubmit}>
             <div className="form-group">
@@ -48,16 +52,15 @@ class LoginForm extends Component {
               </label>
             </div>
             {
-            this.props.login.error
-            ? <div className="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>User name or Password Incorrect</strong>
-                <button className="close" data-dismiss="alert" aria-label="Close" onClick={this.resetMessage}>
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-            : null
-          }
-
+              this.props.login.error
+              ? <div className="alert alert-danger alert-dismissible fade show" role="alert">
+                  <strong>User name or Password Incorrect</strong>
+                  <button className="close" data-dismiss="alert" aria-label="Close" onClick={this.resetMessage}>
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              : null
+            }
             <div className="form-group">
               <button className="btn btn-primary" type="submit" disabled={this.props.login.isLogging}>Login</button>
             </div>

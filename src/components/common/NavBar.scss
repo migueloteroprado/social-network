@@ -1,6 +1,11 @@
+.nav-bar {
+  box-shadow: 0px 5px 15px grey;
+}
+
 .navbar .navbar-brand {
   &:hover, &:active {
     color: #00c8df !important;
+    
   }
 }
 .navbar-dark .navbar-nav .nav-link {
@@ -25,9 +30,6 @@
 }
 
 .logo {
-  //font-size: 1.5rem;
-  //color: white;
-  //padding-right: 10px;
   margin-top: -5px;
   padding-right: 5px;
   width: 40px;

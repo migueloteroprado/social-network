@@ -43,7 +43,7 @@ class Navbar extends Component {
                   <NavLink className="nav-link menu-item-center" onClick={this.toggleNavbar} to='/authors'>Authors</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink exact className="nav-link menu-item-center" onClick={this.toggleNavbar} /*data-toggle="collapse" data-target=".navbar-collapse.show"*/ to='/profile'>My Profile</NavLink>
+                  <NavLink exact className="nav-link menu-item-center" onClick={this.toggleNavbar} /*data-toggle="collapse" data-target=".navbar-collapse.show"*/ to='/profile'>Profile</NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink exact className="nav-link menu-item-center" onClick={this.toggleNavbar} /*data-toggle="collapse" data-target=".navbar-collapse.show"*/ to='/requests'>Requests</NavLink>

@@ -1,10 +1,11 @@
-import { Redirect } from 'react-router-dom';
-import React, { Component } from 'react';
-import { connect }  from 'react-redux';
-import { dispatchAddArticle } from '../../store/actions/articles';
+import { Redirect } from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect }  from 'react-redux'
+import { dispatchAddArticle } from '../../store/actions/articles'
 import AuthorDetail from '../authors/AuthorDetail'
 import ArticleList from '../articles/ArticleList'
-import ArticleForm from '../articles/ArticleForm';
+import ArticleForm from '../articles/ArticleForm'
+import './ProfilePage.scss'
 
 class ProfilePage extends Component {
   state = {
@@ -29,12 +30,10 @@ class ProfilePage extends Component {
       currentAuthor
         ? <div>
             <header className="page-title">
-              <h3>My Profile</h3>
+              <h4>Profile</h4>
             </header>
             <section>
               <AuthorDetail author={currentAuthor} />
-            </section>
-            <section>
               <ArticleForm onAddArticle={this.onAddArticle} showMessage={this.state.articleAdded}/>
               <ArticleList articles={filteredArticles} />
             </section>

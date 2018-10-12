@@ -1,0 +1,22 @@
+.requests-detail {
+
+  .request {
+    display: flex;
+    justify-content: space-between;
+    text-align: right;
+    padding: 20px 20px 15px 25px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    background: white;
+    margin-bottom: 15px;
+    box-shadow: 2px 2px 3px 0px #ccc;
+    position: relative;
+    font-size: 1.4rem;
+    text-transform: capitalize;
+  
+  }
+
+  button {
+    margin-left: 15px;
+  }
+}

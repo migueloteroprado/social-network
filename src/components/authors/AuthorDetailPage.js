@@ -4,7 +4,7 @@ import AuthorDetail from './AuthorDetail'
 const AuthorDetailPage = ({location: {state: {author}}}) => 
   <React.Fragment>
     <header className="page-title">
-      <h3>Author Detail</h3>
+      <h4>Author Detail</h4>
     </header>
     <AuthorDetail author={author} type="author-detail" />
   </React.Fragment>

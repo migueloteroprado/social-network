@@ -26,8 +26,10 @@ class ArticleForm extends Component {
 
   render() {
     return (
-      <form id="articleForm" onSubmit={this.handleSubmit}>
-        <h4>Add a new Article:</h4>
+      <form id="articleForm" className="article-form" onSubmit={this.handleSubmit}>
+        <header>
+          <h5>Add a new Article</h5>
+        </header>
         <div className="form-group">
           <label htmlFor="title">
           Title 
@@ -39,7 +41,7 @@ class ArticleForm extends Component {
           <textarea className="form-control" name="content" id="content" onChange={this.handleInput} required /></label>
         </div>
         <div className="form-group">
-          <button type="submit" className="btn btn-secondary btn-sm">Add Article</button>
+          <button type="submit" className="btn btn-primary">Add Article</button>
         </div>
         <div>
           {this.state.showMessage

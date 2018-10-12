@@ -1,14 +1,15 @@
-import React from 'react';
+import React from 'react'
+import './Message.scss';
 
 const Message = (props) => 
-  <div>
-    <h3>{props.message}</h3>
+  <header className="message">
+    <h4>{props.message}</h4>
     {
       props.showButton 
-        ? <button className='btn btn-secondary' onClick={props.onClose}>{props.buttonCaption || 'OK'}</button>
+        ? <button className='btn btn-primary' onClick={() => props.closeFn()}>{props.buttonCaption || 'OK'}</button>
         : null
     }
     
-  </div>
+  </header>
 
 export default Message;

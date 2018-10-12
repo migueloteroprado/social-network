@@ -8,8 +8,7 @@ class Logout extends Component {
 
   render() {
     return (
-      <Message message="Logged out successfully" /*onClose={() => this.props.history.push('/')}*/ /> 
-      /*<Redirect to='/'/> */
+      <Message message="Logged out successfully" showButton={true} closeFn={() => this.props.history.push('/')} /> 
     )
   }
   componentDidMount() {

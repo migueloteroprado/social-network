@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { dispatchAcceptSubscription, dispatchRejectSubscription } from '../../store/actions/subscriptions'
 import { getAuthorByUUID, getName } from '../../utils/utils'
+import './RequestsPage.scss'
 
 class RequestsPage extends Component {
 
@@ -15,22 +16,25 @@ class RequestsPage extends Component {
     return (
       this.props.currentAuthor
       ? <section>
-          <header>
-            <h3>Pending Requests</h3>
+          <header className="page-title">
+            <h4>Pending Requests</h4>
           </header>
+          <div className="requests-detail">
           {
             subscriptions.length > 0
             ? subscriptions.map(subscription => 
-              <div key={subscription.subscriptor}>
+              <div className="request" key={subscription.subscriptor}>
                 {
                   getName(getAuthorByUUID(subscription.subscriptor, authors))
-
                 }
-                <button className='btn btn-secondary btn-sm' onClick={(event) => this.handleAccept(event, subscription)}>Accept</button>
-                <button className='btn btn-secondary btn-sm' onClick={(event) => this.handleReject(event, subscription)}>Reject</button>
+                <div className="subscription-buttons">
+                  <button className='btn btn-success' onClick={(event) => this.handleAccept(event, subscription)}>Accept</button>
+                  <button className='btn btn-danger' onClick={(event) => this.handleReject(event, subscription)}>Reject</button>
+                </div>
               </div>)
             : <p>No pending requests</p>
           }
+          </div>
         </section>
       : <Redirect to="/login" />
     )

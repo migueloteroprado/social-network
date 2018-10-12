@@ -36,14 +36,15 @@ class AuthorDetail extends React.Component {
                   <div className="author-info-line"><div className="author-info-label">Location:</div><div> {author.location.street}, {author.location.city}, {author.location.postcode} {author.location.state}</div></div>
                   <div className="author-info-line"><div className="author-info-label">Nationality:</div><div> {author.nat}</div></div>
                 </div>
-                {
-                  subscriptionState === 'accepted'
-                  // filter articles of the current author
-                  ? <ArticleList articles={articles.filter(article => article.author === author.login.uuid)} />
-                  : null
-                }
               </section>
-              
+              {
+                subscriptionState === 'accepted'
+                // filter articles of the current author
+                ? <section>
+                    <ArticleList articles={articles.filter(article => article.author === author.login.uuid)} />
+                  </section>
+                : null
+              }
             </React.Fragment>
           : <Redirect to="/authors" />
         : <Redirect to="/login" />
