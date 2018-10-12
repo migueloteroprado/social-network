@@ -6,7 +6,7 @@ import store from '..'
 export const actionLoginStarted = () => ({
   type: LOGIN_STARTED,
   payload: 'Login Incorrect',
-  error: true
+  error: false
 })
 
 export const actionLoginError = () => ({
@@ -17,7 +17,7 @@ export const actionLoginError = () => ({
 
 export const actionLoginSuccess = (author) => ({
   type: LOGIN_SUCCESS,
-  author
+  payload: author
 })
 
 export const actionLoginReset = () => ({
@@ -40,16 +40,16 @@ export const dispatchLoginStarted = (userName, password) => dispatch => {
   }
 }
 
-export const dispatchLoginError = (userName, password) => {
-  store.dispatch(actionLoginError(userName, password))
+export const dispatchLoginError = (error) => {
+  store.dispatch(actionLoginError(error))
 }
 
 export const dispatchLoginSuccess = (author) => {
   store.dispatch(actionLoginSuccess(author))
 }
 
-export const dispatchLoginReset = (author) => {
-  store.dispatch(actionLoginReset(author))
+export const dispatchLoginReset = () => {
+  store.dispatch(actionLoginReset())
 }
 
 export const dispatchLogout = () => {

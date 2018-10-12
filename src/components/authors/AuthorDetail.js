@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 import Subscription from './Subscription'
 import ArticleList from '../articles/ArticleList'
 import { getSubscriptionState, getName } from '../../utils/utils'
+import './AuthorDetail.scss'
 
 class AuthorDetail extends React.Component {
 
@@ -20,24 +21,29 @@ class AuthorDetail extends React.Component {
       currentAuthor
         ? author 
           ? <React.Fragment>
-              <section>
-                <img src={author.picture.large} alt={getName(author)}/>
-                <h5>{getName(author)}</h5>
-                <Subscription author={author} subscriptionState={subscriptionState}/>
-                <div><p>Phone: {author.phone}</p></div>
-                <div><p>Cell: {author.cell}</p></div>
-                <div><p>Email: <a href={author.email}>{author.email}</a></p></div>
-                <div><p>Gender: {author.gender}</p></div>
-                <div><p>Age: {author.dob.age}</p></div>
-                <div><p>Location: {author.location.street}, {author.location.city}, {author.location.postcode} {author.location.state}</p></div>
-                <div><p>Nationality: {author.nat}</p></div>
+              <section className="author-detail">
+                <header>
+                  <img src={author.picture.large} alt={getName(author)}/>
+                  <h4 className="author-name">{getName(author)}</h4>
+                </header>
+                <div className="author-info">
+                  <Subscription author={author} subscriptionState={subscriptionState}/>
+                  <div className="author-info-line"><div className="author-info-label">Phone:</div><div> {author.phone}</div></div>
+                  <div className="author-info-line"><div className="author-info-label">Cell:</div><div> {author.cell}</div></div>
+                  <div className="author-info-line"><div className="author-info-label">Email:</div><div> <a href={author.email}>{author.email}</a></div></div>
+                  <div className="author-info-line"><div className="author-info-label">Gender:</div><div> {author.gender}</div></div>
+                  <div className="author-info-line"><div className="author-info-label">Age:</div><div> {author.dob.age}</div></div>
+                  <div className="author-info-line"><div className="author-info-label">Location:</div><div> {author.location.street}, {author.location.city}, {author.location.postcode} {author.location.state}</div></div>
+                  <div className="author-info-line"><div className="author-info-label">Nationality:</div><div> {author.nat}</div></div>
+                </div>
+                {
+                  subscriptionState === 'accepted'
+                  // filter articles of the current author
+                  ? <ArticleList articles={articles.filter(article => article.author === author.login.uuid)} />
+                  : null
+                }
               </section>
-              {
-                subscriptionState === 'accepted'
-                // filter articles of the current author
-                ? <ArticleList articles={articles.filter(article => article.author === author.login.uuid)} />
-                : null
-              }
+              
             </React.Fragment>
           : <Redirect to="/authors" />
         : <Redirect to="/login" />

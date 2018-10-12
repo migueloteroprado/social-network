@@ -1,0 +1,21 @@
+.homePage {
+  text-align: center;
+  header > h4 {
+    width: 100%;
+    margin: 15px 0;
+    background: #343a40;
+    border-radius: 10px;
+    color: #00c8df;
+    padding: 10px;
+    font-size: 1.3rem;
+    @media (min-width: 576px) {
+      font-size: 1.6rem;
+    }
+  }
+  img {
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 10px;;
+    box-shadow: 4px 4px 8px #888;
+  }
+}

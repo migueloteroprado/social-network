@@ -1,0 +1,36 @@
+.author-subscription-state {
+  display: flex;
+  //width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 10px;
+
+  position: absolute;
+  right: 15px;
+  bottom: 15px;  
+
+  .subscription-state {
+    font-size: 0.9rem;
+    &.unsubscribed {
+      color: grey;
+    }
+    &.accepted {
+      color: green;
+    }
+    &.pending {
+      color: orange;
+    }
+    &.rejected {
+      color: #721c24;
+    }
+  }
+
+  .subscription-link {
+    cursor: pointer;
+    font-size: 0.8rem;
+    &:hover {
+      color: #888
+    }
+  }
+}

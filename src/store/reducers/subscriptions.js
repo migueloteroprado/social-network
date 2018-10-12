@@ -40,8 +40,9 @@ export default (state = initialState, action) => {
       }
     case ACCEPT_SUBSCRIPTION:
     case REJECT_SUBSCRIPTION:
+      // map() over all requests: if same author and subscriber, change state, otherwise keep it unchanged
       const subscriptionsUpdated = state.subscriptions.map(s => {
-        if (s.author !== action.payload.author && s.subscriptor !== action.payload.subscriptor) {
+        if (s.author !== action.payload.author || s.subscriptor !== action.payload.subscriptor) {
           return s
         } else {
           return {author: action.payload.author, subscriptor: action.payload.subscriptor, state: action.payload.state}

@@ -28,8 +28,8 @@ class ProfilePage extends Component {
     return (
       currentAuthor
         ? <div>
-            <header>
-              <h3>Profile</h3>
+            <header className="page-title">
+              <h3>My Profile</h3>
             </header>
             <section>
               <AuthorDetail author={currentAuthor} />

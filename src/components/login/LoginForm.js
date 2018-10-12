@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { dispatchSetAuthors } from '../../store/actions/authors';
-import { dispatchLoginStarted, dispatchLoginReset } from  '../../store/actions/login';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { dispatchSetAuthors } from '../../store/actions/authors'
+import { dispatchLoginStarted, dispatchLoginReset } from  '../../store/actions/login'
 import Message from '../common/Message'
+import './LoginForm.scss'
 
 class LoginForm extends Component {
 

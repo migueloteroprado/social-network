@@ -16,10 +16,10 @@ export default (state = initialState, action) => {
         error: null
       }    
     case LOGIN_SUCCESS:
-      sessionStorage.setItem('social.currentAuthor', JSON.stringify(action.author))
+      sessionStorage.setItem('social.currentAuthor', JSON.stringify(action.payload))
       return {
         ...state,
-        currentAuthor: action.author,
+        currentAuthor: action.payload,
         isLogging: false
       }
     case LOGIN_ERROR:

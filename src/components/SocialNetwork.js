@@ -7,11 +7,10 @@ import { Provider, connect } from 'react-redux';
 import ErrorBoundary from './common/ErrorBoundary'
 import Message from './common/Message'
 import store from '../store';
-import { dispatchSetAuthors } from '../store/actions/authors';
+import { dispatchLoadAuthorsStarted } from '../store/actions/authors';
 import { dispatchLoginSuccess } from '../store/actions/login';
 import { dispatchLoadArticles } from '../store/actions/articles';
 import { dispatchLoadSubscriptions } from '../store/actions/subscriptions';
-import API_URL from '../config';
 
 class SocialNetwork extends Component {
 
@@ -41,10 +40,10 @@ class SocialNetwork extends Component {
                 <h2>There was an Error: {error.message}</h2>
               }>
               {
-                this.state.loadingAuthors 
+                this.props.authors.loading
                   ? <Message message="Loading ..."/>
-                  : this.state.error
-                    ? <Message message={this.state.error}/>
+                  : this.props.authors.error
+                    ? <Message message={this.props.authors.error}/>
                     : <React.Fragment>
                         <NavBar />
                         <Main />
@@ -59,25 +58,10 @@ class SocialNetwork extends Component {
 
   componentDidMount = () => {
     // If authors list was not loaded from API, then load it
-    if (this.props.authors.length === 0) {
-      this.loadAuthors();
-    }
-  }
+    if (this.props.authors.authors.length === 0) {
+      this.props.loadAuthors()
+      //this.loadAuthors();
 
-  loadAuthors = async () => {
-    // Request authors from API
-    try {
-      this.setState({ loadingAuthors: true })
-      const response = await fetch(API_URL);
-      const authorsJSON = await response.json();
-      if (authorsJSON.results) {
-        this.props.onSetAuthors(authorsJSON.results);
-      }
-      this.setState({ error: null })
-    } catch(err) {
-      this.setState({ error: 'There was an Error getting Authors Data' })
-    } finally {
-      this.setState({ loadingAuthors: false })
     }
   }
 
@@ -115,10 +99,10 @@ class SocialNetwork extends Component {
 
 export default connect(
   state => ({
-    authors: state.authors.authors
+    authors: state.authors
   }),
   dispatch => ({
-    onSetAuthors: (authors) => dispatchSetAuthors(authors),
+    loadAuthors: () => dispatch(dispatchLoadAuthorsStarted()),
     loadArticles: (articles) => dispatchLoadArticles(articles),
     loadSubscriptions: (subscriptions) => dispatchLoadSubscriptions(subscriptions),
     setLoggedAuthor: (author) => dispatchLoginSuccess(author)

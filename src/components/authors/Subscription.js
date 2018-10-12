@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { dispatchRemoveSubscription, dispatchAddSubscription } from '../../store/actions/subscriptions';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { dispatchRemoveSubscription, dispatchAddSubscription } from '../../store/actions/subscriptions'
+import './Subscription.scss'
 
 class Subscription extends Component {
 
@@ -12,30 +13,30 @@ class Subscription extends Component {
     switch (this.state.subscriptionState) {
       case 'unsubscribed':
         return (
-          <div>
-            <span>Unsubscribed</span>
-            <button className='btn btn-secondary btn-sm' onClick={this.requestSubscription}>Request Subscription</button> 
+          <div className="author-subscription-state">
+            <span className="subscription-state unsubscribed">Unsubscribed</span>
+            <span className="subscription-link" onClick={this.requestSubscription}>Request Subscription</span> 
           </div>
         )
       case 'accepted':
         return (
-          <div>
-            <p>Subscribed</p>
-            <button className='btn btn-secondary btn-sm' onClick={this.removeSubscription}>Remove Subscription</button>
+          <div className="author-subscription-state">
+            <span className="subscription-state accepted">Subscribed</span>
+            <span className="subscription-link" onClick={this.removeSubscription}>Remove Subscription</span>
           </div>
         )
       case 'pending':
         return (
-          <div>
-            <p>Request Pending</p>
-            <button className='btn btn-secondary btn-sm' onClick={this.removeSubscription}>Cancel Request</button>
+          <div className="author-subscription-state ">
+            <span className="subscription-state pending">Request Pending</span>
+            <span className="subscription-link" onClick={this.removeSubscription}>Cancel Request</span>
           </div>
         )
       case 'rejected':
         return (
-          <div>
-            <p>Request Rejected</p>
-            <button className='btn btn-secondary btn-sm' onClick={this.requestSubscription}>Request Subscription</button> 
+          <div className="author-subscription-state ">
+            <span className="subscription-state rejected">Request Rejected</span>
+            <span className="subscription-link" onClick={this.requestSubscription}>Request Subscription</span> 
           </div>
         )
       default:

@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { NavLink, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import './NavBar.scss';
+import React, { Component } from 'react'
+import { NavLink, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import './NavBar.scss'
+import logo from './../../assets/logo.svg'
 
 class Navbar extends Component {
 
@@ -24,7 +25,7 @@ class Navbar extends Component {
 
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
           <NavLink exact to="/" className="navbar-brand">
-            <i className="logo far fa-newspaper" alt="Social Network Logo"></i>
+            <img className="logo" src={logo} alt="Social Network Logo" />
             Social Network
           </NavLink>
           
@@ -42,7 +43,7 @@ class Navbar extends Component {
                   <NavLink className="nav-link menu-item-center" onClick={this.toggleNavbar} to='/authors'>Authors</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink exact className="nav-link menu-item-center" onClick={this.toggleNavbar} /*data-toggle="collapse" data-target=".navbar-collapse.show"*/ to='/profile'>Profile</NavLink>
+                  <NavLink exact className="nav-link menu-item-center" onClick={this.toggleNavbar} /*data-toggle="collapse" data-target=".navbar-collapse.show"*/ to='/profile'>My Profile</NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink exact className="nav-link menu-item-center" onClick={this.toggleNavbar} /*data-toggle="collapse" data-target=".navbar-collapse.show"*/ to='/requests'>Requests</NavLink>
