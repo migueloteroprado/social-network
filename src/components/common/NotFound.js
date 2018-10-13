@@ -1,6 +1,19 @@
 import React from 'react';
+import styled from 'styled-components'
 
-const NotFound = () =>
-  <h3>Page Not Found</h3>
+const NotFound = (props) =>
+  <div className={props.className}>
+    <h4>Page Not Found</h4>
+    <button className="btn btn-primary btn-sm" onClick={() => props.history.goBack()}>Go Back</button>
+  </div>
 
-export default NotFound;
+export default styled(NotFound)`
+  padding: 20px;
+  background: white;
+  border: 1px solid ${props => props.theme.colors.border};
+  border-radius: 5px;
+  margin-top: 20px;
+  h4 {
+    margin-bottom: 15px;
+  }
+`;

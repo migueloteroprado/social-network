@@ -1,6 +1,7 @@
 import React from "react"
 import { Switch, Route, withRouter } from "react-router-dom"
 import { connect } from "react-redux"
+import styled from 'styled-components'
 import HomePage from "./HomePage"
 import LoginForm from "../login/LoginForm"
 import Logout from '../login/Logout'
@@ -9,11 +10,10 @@ import AuthorDetailPage from '../authors/AuthorDetailPage'
 import ProfilePage from '../profile/ProfilePage'
 import RequestsPage from '../requests/RequestsPage'
 import NotFound from './NotFound'
-import './Main.scss'
 
 const Main = (props) => {
   return (
-    <div className="content-main">
+    <div className={props.className}>
     <div className="container">
         <Switch>
           <Route exact path="/" component={HomePage} />
@@ -30,11 +30,20 @@ const Main = (props) => {
   );
 };
 
-export default withRouter(
-  connect(
-    state => ({
-      authors: state.authors,
-      login: state.login
-    })
-  )(Main)
-);
+export default styled(
+  withRouter(
+    connect(
+      state => ({
+        authors: state.authors,
+        login: state.login
+      })
+    )(Main)
+  )
+)`
+  position: fixed;
+  top: 55px;
+  left: 0;
+  right: 0;
+  height: calc(100% - 95px);
+  overflow: auto;
+`

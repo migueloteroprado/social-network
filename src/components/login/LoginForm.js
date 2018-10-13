@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 import { dispatchSetAuthors } from '../../store/actions/authors'
 import { dispatchLoginStarted, dispatchLoginReset } from  '../../store/actions/login'
 import Message from '../common/Message'
-import './LoginForm.scss'
-
 class LoginForm extends Component {
 
   state = {
@@ -39,7 +38,7 @@ class LoginForm extends Component {
           <header className="page-title">
             <h4>Login</h4>
           </header>
-          <form id="loginForm" onSubmit={this.handleSubmit}>
+          <form id="loginForm" className={this.props.className} onSubmit={this.handleSubmit}>
             <div className="form-group">
               <label>
                 User Name
@@ -61,9 +60,7 @@ class LoginForm extends Component {
                 </div>
               : null
             }
-            <div className="form-group">
-              <button className="btn btn-primary" type="submit" disabled={this.props.login.isLogging}>Login</button>
-            </div>
+            <button className="btn btn-primary" type="submit" disabled={this.props.login.isLogging}>Login</button>
           </form>
         </React.Fragment>
     );
@@ -75,11 +72,22 @@ class LoginForm extends Component {
 
 }
 
-export default connect(
-  state => ({ authors: state.authors, login: state.login }), 
-  dispatch => ({
-    onSetAuthors: (authors) => dispatchSetAuthors(authors),
-    onLogin: (userName, password) => dispatch(dispatchLoginStarted(userName, password)),
-    onReset: () => dispatchLoginReset()
-  })
-)(LoginForm)
+export default styled(
+  connect(
+    state => ({ authors: state.authors, login: state.login }), 
+    dispatch => ({
+      onSetAuthors: (authors) => dispatchSetAuthors(authors),
+      onLogin: (userName, password) => dispatch(dispatchLoginStarted(userName, password)),
+      onReset: () => dispatchLoginReset()
+    })
+  )(LoginForm)
+)`
+  padding: 15px 20px 15px 20px;
+  border: 1px solid ${props => props.theme.colors.border};
+  border-radius: 5px;
+  margin: 20px 0;
+  background: white;  
+  input {
+    max-width: 250px;
+  }
+`

@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import NavBar from './common/NavBar';
-import Main from './common/Main';
-import './SocialNetwork.scss'
-import { Provider, connect } from 'react-redux';
+import React, { Component } from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import styled from 'styled-components'
 import ErrorBoundary from './common/ErrorBoundary'
+import NavBar from './common/NavBar'
+import Footer from './common/Footer'
+import Main from './common/Main'
 import Message from './common/Message'
-import store from '../store';
-import { dispatchLoadAuthorsStarted } from '../store/actions/authors';
-import { dispatchLoginSuccess } from '../store/actions/login';
-import { dispatchLoadArticles } from '../store/actions/articles';
-import { dispatchLoadSubscriptions } from '../store/actions/subscriptions';
+import { dispatchLoadAuthorsStarted } from '../store/actions/authors'
+import { dispatchLoginSuccess } from '../store/actions/login'
+import { dispatchLoadArticles } from '../store/actions/articles'
+import { dispatchLoadSubscriptions } from '../store/actions/subscriptions'
 
 class SocialNetwork extends Component {
 
@@ -32,27 +32,27 @@ class SocialNetwork extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
-      <Provider store={store}>
-        <BrowserRouter>
-          <div>
-            <ErrorBoundary onError={error =>
-                <h2>There was an Error: {error.message}</h2>
-              }>
-              {
-                this.props.authors.loading
-                  ? <Message message="Loading ..."/>
-                  : this.props.authors.error
-                    ? <Message message={this.props.authors.error}/>
-                    : <React.Fragment>
-                        <NavBar />
-                        <Main />
-                      </React.Fragment>
-              }
-            </ErrorBoundary>
-          </div>
-        </BrowserRouter>
-      </Provider>
+      <BrowserRouter>
+        <div className={this.props.className}>
+          <ErrorBoundary onError={error =>
+            <h2>There was an Error: {error.message}</h2>
+          }>
+          {
+            this.props.authors.loading
+              ? <Message message="Loading..."/>
+              : this.props.authors.error
+                ? <Message message={this.props.authors.error}/>
+                : <React.Fragment>
+                    <NavBar />
+                    <Main />
+                    <Footer />
+                  </React.Fragment>
+          }
+          </ErrorBoundary>
+         </div>
+      </BrowserRouter>
     )
   }
 
@@ -60,8 +60,6 @@ class SocialNetwork extends Component {
     // If authors list was not loaded from API, then load it
     if (this.props.authors.authors.length === 0) {
       this.props.loadAuthors()
-      //this.loadAuthors();
-
     }
   }
 
@@ -93,11 +91,10 @@ class SocialNetwork extends Component {
       subscriptions = [];
     }
     this.props.loadSubscriptions(subscriptions);
-  }    
-
+  }
 }
 
-export default connect(
+export default styled(connect(
   state => ({
     authors: state.authors
   }),
@@ -107,4 +104,22 @@ export default connect(
     loadSubscriptions: (subscriptions) => dispatchLoadSubscriptions(subscriptions),
     setLoggedAuthor: (author) => dispatchLoginSuccess(author)
   })
-)(SocialNetwork)
+)(SocialNetwork))`
+  a {
+    color: ${props => props.theme.colors.secondary};
+    &:hover {
+      color: ${props => props.theme.colors.hover};
+      text-decoration: none;
+    }
+  }
+  header.page-title {
+    h4 {
+      padding: 10px 10px 10px 20px;
+      margin: 20px 0 15px 0;
+      background: ${props => props.theme.colors.background.title};
+      border-radius: 5px;
+      color: ${props => props.theme.colors.primary};
+      box-shadow: 2px 2px 5px grey;
+    }
+  }
+`

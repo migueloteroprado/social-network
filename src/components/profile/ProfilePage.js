@@ -5,7 +5,6 @@ import { dispatchAddArticle } from '../../store/actions/articles'
 import AuthorDetail from '../authors/AuthorDetail'
 import ArticleList from '../articles/ArticleList'
 import ArticleForm from '../articles/ArticleForm'
-import './ProfilePage.scss'
 
 class ProfilePage extends Component {
   state = {
@@ -28,7 +27,7 @@ class ProfilePage extends Component {
 
     return (
       currentAuthor
-        ? <div>
+        ? <React.Fragment>
             <header className="page-title">
               <h4>Profile</h4>
             </header>
@@ -37,7 +36,7 @@ class ProfilePage extends Component {
               <ArticleForm onAddArticle={this.onAddArticle} showMessage={this.state.articleAdded}/>
               <ArticleList articles={filteredArticles} />
             </section>
-          </div>
+          </React.Fragment>
         : <Redirect to="/login" />
     )
   }
@@ -54,4 +53,4 @@ export default connect(
   dispatch => ({
     addArticle: (article) => dispatchAddArticle(article)
   })
-)(ProfilePage);
+)(ProfilePage)

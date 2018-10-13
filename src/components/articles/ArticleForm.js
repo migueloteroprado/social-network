@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './ArticleForm.scss'
+import styled from 'styled-components'
 
 class ArticleForm extends Component {
 
@@ -26,7 +26,7 @@ class ArticleForm extends Component {
 
   render() {
     return (
-      <form id="articleForm" className="article-form" onSubmit={this.handleSubmit}>
+      <form id="articleForm" className={this.props.className} onSubmit={this.handleSubmit}>
         <header>
           <h5>Add a new Article</h5>
         </header>
@@ -59,4 +59,25 @@ class ArticleForm extends Component {
   }
 }
 
-export default ArticleForm;
+export default styled(ArticleForm)`
+  padding: 20px 20px 5px 20px;
+  border: 1px solid ${props => props.theme.colors.border};
+  border-radius: 5px;
+  background: ${props => props.theme.colors.background.content};
+  margin-bottom: 15px;
+  box-shadow: 2px 2px 3px 0px #ccc;
+  position: relative;
+  font-size: 1.2rem;
+  header > h5 {
+    padding: 10px 10px 10px 15px;
+    margin: 0 0 20px;
+    background: #343a40;
+    border-radius: 5px;
+    color: white;
+  }
+  .form-group {
+    label, input {
+      min-width: 100%;
+    }
+  }
+`
