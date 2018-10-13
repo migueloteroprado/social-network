@@ -1,15 +1,21 @@
-.nav-bar {
+@import '../../settings.scss';
+
+.main-menu.navbar {
   box-shadow: 0px 5px 15px grey;
+
+  position: fixed !important; 
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
-.navbar .navbar-brand {
+.main-menu.navbar .navbar-brand {
   &:hover, &:active {
-    color: #00c8df !important;
-    
+    color: $primary-color !important;    
   }
 }
 .navbar-dark .navbar-nav .nav-link {
-  color: white !important;
+  color: white;
 }
 
 .navbar-dark .navbar-nav .nav-link,
@@ -17,14 +23,14 @@
   &.menu-item-right {
     padding-left: 1.2rem;  
     &.active, &:hover {
-      color: #00c8df !important;
+      color: $primary-color;
     }
   }
   &.menu-item-center {
     padding-left: 1.2rem;
     padding-right: 1.2rem;
     &.active, &:hover {
-      color:#00c8df !important;
+      color: $primary-color;
     }
   }
 }

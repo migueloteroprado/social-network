@@ -1,1 +1,8 @@
-$color: blue;
+.content-main {
+  position: fixed;
+  top: 55px;
+  left: 0;
+  right: 0;
+  height: calc(100% - 55px);
+  overflow: auto;
+}

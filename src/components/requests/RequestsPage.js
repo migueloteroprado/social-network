@@ -32,7 +32,9 @@ class RequestsPage extends Component {
                   <button className='btn btn-danger' onClick={(event) => this.handleReject(event, subscription)}>Reject</button>
                 </div>
               </div>)
-            : <p>No pending requests</p>
+            : <div className="info-message">
+                <h5>No pending requests</h5>
+              </div>
           }
           </div>
         </section>
