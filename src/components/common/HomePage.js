@@ -16,7 +16,7 @@ export default styled(HomePage)`
   img {
     width: 100%;
     margin: 0 auto;
-    border-radius: 10px;;
+    border-radius: 5px;
     box-shadow: 4px 4px 8px #888;
   }
 `

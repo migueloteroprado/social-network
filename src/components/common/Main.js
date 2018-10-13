@@ -14,7 +14,7 @@ import NotFound from './NotFound'
 const Main = (props) => {
   return (
     <div className={props.className}>
-    <div className="container">
+      <div className="container">
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/authors" component={AuthorsPage} />
@@ -25,7 +25,7 @@ const Main = (props) => {
           <Route exact path="/logout" component={Logout} />
           <Route component={NotFound} />
         </Switch>
-    </div>
+      </div>
     </div>
   );
 };

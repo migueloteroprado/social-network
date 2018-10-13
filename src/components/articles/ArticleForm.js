@@ -38,7 +38,7 @@ class ArticleForm extends Component {
         <div className="form-group">
           <label htmlFor="content">
           Content 
-          <textarea className="form-control" name="content" id="content" onChange={this.handleInput} required /></label>
+          <textarea className="form-control" name="content" id="content" onChange={this.handleInput} rows="5" required /></label>
         </div>
         <div className="form-group">
           <button type="submit" className="btn btn-primary">Add Article</button>

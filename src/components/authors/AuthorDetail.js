@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 import Subscription from './Subscription'
 import ArticleList from '../articles/ArticleList'
 import { getSubscriptionState, getName } from '../../utils/utils'
-import './AuthorDetail.scss'
+import styled from 'styled-components'
 
 class AuthorDetail extends React.Component {
 
@@ -21,7 +21,7 @@ class AuthorDetail extends React.Component {
       currentAuthor
         ? author 
           ? <React.Fragment>
-              <section className="author-detail">
+              <section className={this.props.className}>
                 <header>
                   <img src={author.picture.large} alt={getName(author)}/>
                   <h4 className="author-name">{getName(author)}</h4>
@@ -52,12 +52,63 @@ class AuthorDetail extends React.Component {
   }
 } 
 
-export default connect(
-  state => ({ 
-    currentAuthor: state.login.currentAuthor,
-    subscriptions: state.subscriptions.subscriptions,
-    articles: state.articles.articles
-  })
-)(AuthorDetail)
+export default styled(
+  connect(
+    state => ({ 
+      currentAuthor: state.login.currentAuthor,
+      subscriptions: state.subscriptions.subscriptions,
+      articles: state.articles.articles
+    })
+  )(AuthorDetail)
+)`
+  padding: 20px 20px 15px 20px;
+  border: 1px solid ${props => props.theme.colors.border};
+  border-radius: 5px;
+  background: ${props => props.theme.colors.background.content};
+  margin-bottom: 15px;
+  box-shadow: 2px 2px 3px 0px #ccc;
+  position: relative;
 
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 0;
+
+    @media (min-width: 576px) {
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .author-name {
+      width: inherit;
+      text-transform: capitalize;
+      margin-left: 0px;
+      margin-bottom: 0;
+      padding: 15px 0;
+
+      @media (min-width: 576px) {
+        margin-left: 20px;
+        padding: 0;
+      }
+    }
+    img {
+      border-radius: 15px;
+    }
+  }
+  .author-info {
+    padding: 0px 20px 20px 0;
+    .author-info-line {
+      display: flex;
+      font-size: 0.9rem;
+      padding: 3px 0;
+    }
+    .author-info-label {
+      color: gray;
+      font-size: 0.8rem;
+      min-width: 80px;
+      display: inline-block;
+    }
+  }
+`
 

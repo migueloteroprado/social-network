@@ -9,7 +9,6 @@ const theme = {
       header: '#393f46',
       footer: '#393f46',
       title: '#393f46'
-
     },
     border: '#ddd',
     white: '#f0f0f0',

@@ -6,7 +6,7 @@ const Footer = (props) =>
   (<nav className={`navbar-footer navbar navbar-fixed-botton navbar-dark bg-dark ${props.className}`}>
       <ul className="navbar-nav w-100 justify-content-center links">
         <li className="nav-item">
-          <NavLink className="nav-link" to='/'>Social Network - Práctica de React 2018</NavLink>
+          <NavLink className="nav-link" to='/'>Social Network - Práctica de React</NavLink>
         </li>
       </ul>
   </nav>)

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { dispatchRemoveSubscription, dispatchAddSubscription } from '../../store/actions/subscriptions'
-import './Subscription.scss'
+import styled from 'styled-components'
 
 class Subscription extends Component {
 
@@ -13,28 +13,28 @@ class Subscription extends Component {
     switch (this.state.subscriptionState) {
       case 'unsubscribed':
         return (
-          <div className="author-subscription-state">
+          <div className={this.props.className}>
             <span className="subscription-state unsubscribed">Unsubscribed</span>
             <span className="subscription-link" onClick={this.requestSubscription}>Request Subscription</span> 
           </div>
         )
       case 'accepted':
         return (
-          <div className="author-subscription-state">
+          <div className={this.props.className}>
             <span className="subscription-state accepted">Subscribed</span>
             <span className="subscription-link" onClick={this.removeSubscription}>Remove Subscription</span>
           </div>
         )
       case 'pending':
         return (
-          <div className="author-subscription-state ">
+          <div className={this.props.className}>
             <span className="subscription-state pending">Request Pending</span>
             <span className="subscription-link" onClick={this.removeSubscription}>Cancel Request</span>
           </div>
         )
       case 'rejected':
         return (
-          <div className="author-subscription-state ">
+          <div className={this.props.className}>
             <span className="subscription-state rejected">Request Rejected</span>
             <span className="subscription-link" onClick={this.requestSubscription}>Request Subscription</span> 
           </div>
@@ -59,10 +59,47 @@ class Subscription extends Component {
 
 }
 
-export default connect(
-  state => ({currentAuthor: state.login.currentAuthor}),
-  dispatch => ({
-    onAddSubscription: (subscription) => dispatchAddSubscription(subscription),
-    onRemoveSubscription: (subscription) => dispatchRemoveSubscription(subscription),
-  })
-)(Subscription)
+export default styled(
+  connect(
+    state => ({currentAuthor: state.login.currentAuthor}),
+    dispatch => ({
+      onAddSubscription: (subscription) => dispatchAddSubscription(subscription),
+      onRemoveSubscription: (subscription) => dispatchRemoveSubscription(subscription),
+    })
+  )(Subscription)
+)`
+  position: absolute;
+  height: calc(100% - 20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 10px;
+  right: 15px;
+  top: 0;
+  //bottom: 10px;
+
+  .subscription-state {
+    font-size: 0.9rem;
+    &.unsubscribed {
+      color: grey;
+    }
+    &.accepted {
+      color: green;
+    }
+    &.pending {
+      color: orange;
+    }
+    &.rejected {
+      color: #721c24;
+    }
+  }
+
+  .subscription-link {
+    cursor: pointer;
+    font-size: 0.8rem;
+    &:hover {
+      color: #888
+    }
+  }
+`

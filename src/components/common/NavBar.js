@@ -7,19 +7,19 @@ import logo from './../../assets/logo.svg'
 class Navbar extends Component {
 
   state = {
-    collapsed: true
+    expanded: false
   }
 
   toggleNavbar = (e) => {
     this.setState({
-      collapsed: !this.state.collapsed,
+      expanded: !this.state.expanded,
     });
   }  
 
   render() {
-    const collapsed = this.state.collapsed;
-    const classMenuContent = collapsed ? 'collapse navbar-collapse' : 'collapse navbar-collapse show';
-    const classButton = collapsed ? 'navbar-toggler navbar-toggler-right collapsed' : 'navbar-toggler navbar-toggler-right';    
+    const expanded = this.state.expanded;
+    const classMenuContent = expanded ? 'collapse navbar-collapse show' : 'collapse navbar-collapse';
+    const classButton = expanded ? 'navbar-toggler navbar-toggler-right collapsed' : 'navbar-toggler navbar-toggler-right';    
     return (
 
       <nav className={`main-menu navbar navbar-expand-sm ${this.props.className}`}>
@@ -101,9 +101,10 @@ export default styled(
   .navbar-toggler {
     border: 0;
     i {
+      color: ${props => props.theme.colors.white} !important;
       font-size: 1.5rem;
       &:hover {
-        color: ${props => props.theme.colors.white} !important;
+        color: white !important;
       }
     }
   }
