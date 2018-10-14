@@ -68,10 +68,10 @@ export default styled(
     )(Navbar)
   )
 )`
-  position: fixed !important; 
-  top: 0;
-  left: 0;
-  right: 0;
+  //position: fixed !important; 
+  //top: 0;
+  //left: 0;
+  //right: 0;
   color: ${props => props.theme.colors.white} !important;
   background: ${props => props.theme.colors.background.header} !important;
   box-shadow: 0px 3px 5px grey;

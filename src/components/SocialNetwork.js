@@ -32,7 +32,6 @@ class SocialNetwork extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <BrowserRouter>
         <div className={this.props.className}>

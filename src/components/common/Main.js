@@ -9,6 +9,7 @@ import AuthorsPage from '../authors/AuthorsPage'
 import AuthorDetailPage from '../authors/AuthorDetailPage'
 import ProfilePage from '../profile/ProfilePage'
 import RequestsPage from '../requests/RequestsPage'
+import GoTop from './GoTop'
 import NotFound from './NotFound'
 
 const Main = (props) => {
@@ -26,6 +27,7 @@ const Main = (props) => {
           <Route component={NotFound} />
         </Switch>
       </div>
+      <GoTop />
     </div>
   );
 };
@@ -40,10 +42,11 @@ export default styled(
     )(Main)
   )
 )`
-  position: fixed;
-  top: 55px;
-  left: 0;
-  right: 0;
-  height: calc(100% - 95px);
-  overflow: auto;
+  margin-bottom: 70px;
+  //position: fixed;
+  //top: 55px;
+  //left: 0;
+  //right: 0;
+  //height: calc(100% - 50px);
+  //overflow: auto;
 `

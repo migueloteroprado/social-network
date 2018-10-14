@@ -19,7 +19,7 @@ export default styled(
     bottom: 0;
     left: 0;
     right: 0;
-    height: 40px;
+    height: 50px;
     background: ${props => props.theme.colors.background.footer} !important;
     text-align: center;
     box-shadow: 0px -3px 5px grey;

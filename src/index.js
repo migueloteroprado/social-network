@@ -4,7 +4,7 @@ import SocialNetwork from './components/SocialNetwork'
 import store from './store'
 import { Provider } from 'react-redux'
 import { ThemeProvider, withTheme, injectGlobal } from 'styled-components'
-import theme from './theme'
+import theme from './theme/theme'
 import * as serviceWorker from './serviceWorker'
 
 import 'bootstrap/dist/css/bootstrap.min.css'

@@ -29,7 +29,7 @@ class ProfilePage extends Component {
       currentAuthor
         ? <React.Fragment>
             <header className="page-title">
-              <h4>Profile</h4>
+              <h4>My Profile</h4>
             </header>
             <section>
               <AuthorDetail author={currentAuthor} />
