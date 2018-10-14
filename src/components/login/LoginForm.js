@@ -7,8 +7,8 @@ import Message from '../common/Message'
 class LoginForm extends Component {
 
   state = {
-    userName: 'smallswan392',
-    password: 'freedom',
+    userName: '',
+    password: '',
   };
 
   handleInput = (event) => {
