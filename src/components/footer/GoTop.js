@@ -43,7 +43,7 @@ export default styled(GoTop)`
   }
   i {
     font-size: 2rem;
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.white};
     cursor: pointer;
   }
 `

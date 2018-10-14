@@ -26,7 +26,7 @@ export default styled(ArticleList)`
   position: relative;
   font-size: 1.2rem;
   header.articles-header > h5 {
-    padding: 10px 10px 10px 15px;
+    padding: ${props => props.theme.padding.header};
     margin: 0 0 20px;
     background: ${props => props.theme.colors.background.title};
     border-radius: 5px;

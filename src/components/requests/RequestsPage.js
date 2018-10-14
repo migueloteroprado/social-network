@@ -71,10 +71,10 @@ export default styled(
 )`
   .info-message {
     padding: 15px 20px 15px 20px;
-    border: 1px solid #ddd;
+    border: 1px solid ${props => props.theme.colors.border};
     border-radius: 5px;
     margin: 20px 0;
-    background: white;  
+    background: ${props => props.theme.colors.background.content};  
   }
   .request {
     display: flex;
@@ -82,7 +82,7 @@ export default styled(
     text-align: right;
     align-items: center;
     padding: 20px 20px 15px 25px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid ${props => props.theme.colors.border};
     border-radius: 5px;
     background: white;
     margin-bottom: 15px;

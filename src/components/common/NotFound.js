@@ -9,7 +9,7 @@ const NotFound = (props) =>
 
 export default styled(NotFound)`
   padding: 20px;
-  background: white;
+  background: ${props => props.theme.colors.background.content};
   border: 1px solid ${props => props.theme.colors.border};
   border-radius: 5px;
   margin-top: 20px;

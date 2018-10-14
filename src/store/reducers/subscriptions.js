@@ -30,6 +30,7 @@ export default (state = initialState, action) => {
         subscriptions: subscriptionsAdded
       }
     case REMOVE_SUBSCRIPTION:
+      // filter subscriptions, returning all except the removed one
       const subscriptionsRemoved = 
         state.subscriptions.filter(
           s => s.author !== action.payload.author && s.subscriptor !== action.payload.subscriptor

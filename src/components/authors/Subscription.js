@@ -81,25 +81,27 @@ export default styled(
 
   .subscription-state {
     font-size: 0.9rem;
+    font-weight: bold;
     &.unsubscribed {
-      color: grey;
+      color: ${props => props.theme.colors.subscription.unsubscribed};
     }
     &.accepted {
-      color: green;
+      color: ${props => props.theme.colors.subscription.accepted};
     }
     &.pending {
-      color: orange;
+      color: ${props => props.theme.colors.subscription.pending};
     }
     &.rejected {
-      color: #721c24;
+      color: ${props => props.theme.colors.subscription.rejected};
     }
   }
 
   .subscription-link {
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+    color: ${props => props.theme.colors.secondary};
     &:hover {
-      color: #888
+      color: ${props => props.theme.colors.hover};
     }
   }
 `

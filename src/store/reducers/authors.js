@@ -1,4 +1,4 @@
-import { LOAD_AUTHORS_STARTED, LOAD_AUTHORS_ERROR, LOAD_AUTHORS_COMPLETED } from '../actionTypes';
+import { LOAD_AUTHORS_STARTED, LOAD_AUTHORS_ERROR, LOAD_AUTHORS_SUCCESS } from '../actionTypes';
 
 const initialState = {
   authors: [],
@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
         error: action.payload,
         loading: false
       }      
-    case LOAD_AUTHORS_COMPLETED: 
+    case LOAD_AUTHORS_SUCCESS:
       return {
         ...state,
         authors: action.payload,

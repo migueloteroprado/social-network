@@ -12,7 +12,16 @@ const theme = {
     },
     border: '#ddd',
     white: '#f0f0f0',
-    text: '#222'
+    text: '#222',
+    subscription: {
+      unsubscribed: 'grey',
+      accepted: 'green',
+      pending: 'orange',
+      rejected: '#721c24'
+    }
+  },
+  padding: {
+    header: '8px 10px 8px 15px'
   }
 }
 

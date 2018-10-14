@@ -69,9 +69,9 @@ export default styled(ArticleForm)`
   position: relative;
   font-size: 1.2rem;
   header > h5 {
-    padding: 10px 10px 10px 15px;
+    padding: ${props => props.theme.padding.header};
     margin: 0 0 20px;
-    background: #343a40;
+    background: ${props => props.theme.colors.background.title};
     border-radius: 5px;
     color: white;
   }

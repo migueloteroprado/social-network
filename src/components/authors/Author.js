@@ -31,15 +31,13 @@ export default styled(
   )
 )`
   padding: 15px;
-  border: 1px solid #e0e0e0;
+  border: ${props => props.theme.colors.border};
   border-radius: 5px;
-  background: white;
+  background: ${props => props.theme.colors.background.content};
   margin-bottom: 15px;
   box-shadow: 2px 2px 3px 0px #ccc;
   position: relative;
-  //height: 115px;
   @media (min-width: 992px) {
-    //height: 100px;
     width: calc(50% - 8px);
   }
   .author-header {

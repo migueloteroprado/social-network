@@ -1,6 +1,6 @@
 import API_URL from '../../config';
 import getAuthors from '../../API'
-import { LOAD_AUTHORS_STARTED, LOAD_AUTHORS_ERROR, LOAD_AUTHORS_COMPLETED, SET_AUTHORS } from '../actionTypes'
+import { LOAD_AUTHORS_STARTED, LOAD_AUTHORS_ERROR, LOAD_AUTHORS_SUCCESS, SET_AUTHORS } from '../actionTypes'
 import store from '..';
 
 // Action Creators
@@ -14,8 +14,8 @@ export const actionLoadAuthorsStarted = () => ({
   type: LOAD_AUTHORS_STARTED
 });
 
-export const actionLoadAuthorsCompleted = (authors) => ({
-  type: LOAD_AUTHORS_COMPLETED,
+export const actionLoadAuthorsSuccess = (authors) => ({
+  type: LOAD_AUTHORS_SUCCESS,
   payload: authors
 });
 
@@ -35,14 +35,14 @@ export const dispatchLoadAuthorsStarted = () => async dispatch => {
   dispatch(actionLoadAuthorsStarted());
   try {
     const authors = await getAuthors(API_URL);
-    dispatchLoadAuthorsCompleted(authors.results);
+    dispatchLoadAuthorsSuccess(authors.results);
   } catch (error) {
     dispatchLoadAuthorsError(error.message);
   }
 };
 
-export const dispatchLoadAuthorsCompleted = (authors) => {
-  store.dispatch(actionLoadAuthorsCompleted(authors))
+export const dispatchLoadAuthorsSuccess = (authors) => {
+  store.dispatch(actionLoadAuthorsSuccess(authors))
 }
 export const dispatchLoadAuthorsError = (error) => {
   store.dispatch(actionLoadAuthorsError(error))

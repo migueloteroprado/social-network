@@ -3,9 +3,9 @@ import { BrowserRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import ErrorBoundary from './common/ErrorBoundary'
-import NavBar from './common/NavBar'
-import Footer from './common/Footer'
-import Main from './common/Main'
+import NavBar from './navbar/NavBar'
+import Footer from './footer/Footer'
+import Main from './main/Main'
 import Message from './common/Message'
 import { dispatchLoadAuthorsStarted } from '../store/actions/authors'
 import { dispatchLoginSuccess } from '../store/actions/login'
@@ -106,6 +106,7 @@ export default styled(connect(
 )(SocialNetwork))`
   a {
     color: ${props => props.theme.colors.secondary};
+    outline: none;
     &:hover {
       color: ${props => props.theme.colors.hover};
       text-decoration: none;
@@ -113,10 +114,11 @@ export default styled(connect(
   }
   header.page-title {
     h4 {
-      padding: 10px 10px 10px 20px;
+      padding: ${props => props.theme.padding.header};
       margin: 20px 0 15px 0;
       background: ${props => props.theme.colors.background.title};
       border-radius: 5px;
+      font-size: 1.2rem;
       color: ${props => props.theme.colors.primary};
       box-shadow: 2px 2px 5px grey;
     }

@@ -56,6 +56,7 @@ export const dispatchLogout = () => {
   store.dispatch(actionLogout())
 }
 
+// Function to check if username and password are valid
 const checkLogin = (userName, password) => {
   const authors = store.getState().authors.authors;
   const author = authors.filter(

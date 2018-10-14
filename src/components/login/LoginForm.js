@@ -86,7 +86,7 @@ export default styled(
   border: 1px solid ${props => props.theme.colors.border};
   border-radius: 5px;
   margin: 20px 0;
-  background: white;  
+  background: ${props => props.theme.colors.background.content};  
   input {
     max-width: 250px;
   }
