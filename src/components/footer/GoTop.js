@@ -34,9 +34,8 @@ class GoTop extends Component {
 
 export default styled(GoTop)`
   position: fixed;
-  bottom: 7px;
+  bottom: 6px;
   right: 10px;
-  //transform: translateY(-50%);
   z-index: 2;
   &.hidden {
     display: none;
