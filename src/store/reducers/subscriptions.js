@@ -25,6 +25,7 @@ export default (state = initialState, action) => {
             : s
         })
       }
+      // Save subscriptions in localStorage
       localStorage.setItem('social.subscriptions', JSON.stringify(subscriptionsAdded));
       return {
         subscriptions: subscriptionsAdded

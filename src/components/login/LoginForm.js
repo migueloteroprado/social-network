@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import { dispatchSetAuthors } from '../../store/actions/authors'
 import { dispatchLoginStarted, dispatchLoginReset } from  '../../store/actions/login'
 import Message from '../common/Message'
 class LoginForm extends Component {
@@ -76,7 +75,6 @@ export default styled(
   connect(
     state => ({ authors: state.authors, login: state.login }), 
     dispatch => ({
-      onSetAuthors: (authors) => dispatchSetAuthors(authors),
       onLogin: (userName, password) => dispatch(dispatchLoginStarted(userName, password)),
       onReset: () => dispatchLoginReset()
     })

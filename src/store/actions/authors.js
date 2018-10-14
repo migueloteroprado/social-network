@@ -1,14 +1,9 @@
 import API_URL from '../../config';
 import getAuthors from '../../API'
-import { LOAD_AUTHORS_STARTED, LOAD_AUTHORS_ERROR, LOAD_AUTHORS_SUCCESS, SET_AUTHORS } from '../actionTypes'
+import { LOAD_AUTHORS_STARTED, LOAD_AUTHORS_ERROR, LOAD_AUTHORS_SUCCESS } from '../actionTypes'
 import store from '..';
 
 // Action Creators
-
-export const actionSetAuthors = authors => ({
-  type: SET_AUTHORS,
-  payload: authors
-});
 
 export const actionLoadAuthorsStarted = () => ({
   type: LOAD_AUTHORS_STARTED
@@ -24,12 +19,7 @@ export const actionLoadAuthorsError = (error) => ({
   payload: error
 });
 
-
 // Action Dispatchers
-
-export const dispatchSetAuthors = (authors) => {
-  store.dispatch(actionSetAuthors(authors));
-};
 
 export const dispatchLoadAuthorsStarted = () => async dispatch => {
   dispatch(actionLoadAuthorsStarted());
