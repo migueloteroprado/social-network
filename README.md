@@ -219,9 +219,9 @@ Reducer:
 
 ```json
 {
-  "isLogging": false,     // indicates if a login attempt is in curse
-  "currentAuthor": null,  // the authos currently logged id
-  "error": null           // Login error, if any
+  "isLogging": false,
+  "currentAuthor": null,
+  "error": null
 }
 ```
 
@@ -239,9 +239,9 @@ Reducer:
 
 ```json
 {
-  authors: [],    // List of authors obtainde from randomuser.me API
-  error: null,    // Loading error, if any
-  loading: false  // indicates if authors list is currently loading
+  "authors": [],
+  "error": null,
+  "loading": false
 }
 ```
 
@@ -257,8 +257,8 @@ Reducer:
 
 ```json
 {
-  "articles": [], // List of articles
-  "id": 1         // Id of the last article published
+  "articles": [],
+  "id": 1
 }
 ```
 
@@ -273,7 +273,7 @@ Reducer:
 
 ```json
 {
-  subscriptions: []   // List of subscriptions
+  "subscriptions": []
 }
 ```
 
