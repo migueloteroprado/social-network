@@ -121,13 +121,13 @@ Every user in the results array will have the following format:
 
 ## Pages / Routes
 
-* **Home Page**
+* **Home Page** (/)
   Shows a welcome screen
-* **Login**
+* **Login** (/login)
   Shows a form to sign in into the application.
   The user must enter his user name and password
   Other routes will be unavailble if no user is logged in, and links to theese pages will redirect to login screen
-* **Authors**
+* **Authors** (/authors)
   Shows a list of all users (except the user who is logged in)
   For every user, the following information will be displayed:
   - Name
@@ -136,7 +136,7 @@ Every user in the results array will have the following format:
   - Subscription state (Unsubscribed, Request Pending, Subscribed, or Subscription Rejected)
   - A link to make a subscription request to this user (or remove if the user is subscribed yet)
   Cliking in the name or the users photo, the user detail page wil be shown
-* **Author Detail**
+* **Author Detail** (/authors/:uuid)
   Shows the complete information about the user selected:
   - Name
   - Photo (big)
@@ -149,14 +149,14 @@ Every user in the results array will have the following format:
   - Subscription state (Subscribed, Request Pending, Subscribed or Request Rejected)
   - Link to request subscription or remove it if we are subscribed to that user yet
   - List of Articles published by this user, **ONLY** if we are subscribed (we made him a subscription request, and the user accepted it)
-* **Profle**
+* **Profile** (/profile)
   The profile of the user who is logged in.
   The page Shows:
   - The same information that the Author's detail page (except subscription related fields)
   - A form to publish new Articles (Title and content).
   The content field admits html
   - A list of all articles published by the logged in user
-* **Logout**
+* **Logout** (/logout)
 
 ---
 
