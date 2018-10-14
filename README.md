@@ -213,7 +213,7 @@ The current logged in user in saved also in the SessionStorage (Key **social.cur
 
 ## Actions / Reducers
 
-###login
+### login
 
 Reducer:
 
