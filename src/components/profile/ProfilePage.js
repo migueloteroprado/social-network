@@ -51,6 +51,6 @@ class ProfilePage extends Component {
 export default connect(
   state => ({ currentAuthor: state.login.currentAuthor, articles: state.articles}),
   dispatch => ({
-    addArticle: (article) => dispatchAddArticle(article)
+    addArticle: (article) => dispatch(dispatchAddArticle(article))
   })
 )(ProfilePage)

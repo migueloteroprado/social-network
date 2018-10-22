@@ -36,16 +36,20 @@ export const dispatchLoadSubscriptions = (subscriptions) => {
 
 export const dispatchAddSubscription = (subscription) => {
   store.dispatch(actionAddSubscription(subscription));
+  localStorage.setItem('social.subscriptions', JSON.stringify(store.getState().subscriptions.subscriptions));
 }
 
-export const dispatchRemoveSubscription = (subscription) => {
+export const dispatchRemoveSubscription = (subscription) =>{
   store.dispatch(actionRemoveSubscription(subscription));
+  localStorage.setItem('social.subscriptions', JSON.stringify(store.getState().subscriptions.subscriptions));
 }
 
 export const dispatchAcceptSubscription = (subscription) => {
   store.dispatch(actionAcceptSubscription(subscription));
+  localStorage.setItem('social.subscriptions', JSON.stringify(store.getState().subscriptions.subscriptions));
 }
 
 export const dispatchRejectSubscription = (subscription) => {
   store.dispatch(actionRejectSubscription(subscription));
+  localStorage.setItem('social.subscriptions', JSON.stringify(store.getState().subscriptions.subscriptions));
 }

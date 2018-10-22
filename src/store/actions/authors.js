@@ -25,7 +25,11 @@ export const dispatchLoadAuthorsStarted = () => async dispatch => {
   dispatch(actionLoadAuthorsStarted());
   try {
     const authors = await getAuthors(API_URL);
-    dispatchLoadAuthorsSuccess(authors.results);
+    if (!authors.error && authors.results) {
+      dispatchLoadAuthorsSuccess(authors.results);
+    } else {
+      dispatchLoadAuthorsError(authors.message);  
+    }
   } catch (error) {
     dispatchLoadAuthorsError(error.message);
   }
@@ -37,4 +41,3 @@ export const dispatchLoadAuthorsSuccess = (authors) => {
 export const dispatchLoadAuthorsError = (error) => {
   store.dispatch(actionLoadAuthorsError(error))
 }
-

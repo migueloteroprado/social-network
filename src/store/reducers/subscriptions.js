@@ -25,8 +25,6 @@ export default (state = initialState, action) => {
             : s
         })
       }
-      // Save subscriptions in localStorage
-      localStorage.setItem('social.subscriptions', JSON.stringify(subscriptionsAdded));
       return {
         subscriptions: subscriptionsAdded
       }
@@ -36,7 +34,6 @@ export default (state = initialState, action) => {
         state.subscriptions.filter(
           s => s.author !== action.payload.author && s.subscriptor !== action.payload.subscriptor
         )
-        localStorage.setItem('social.subscriptions', JSON.stringify(subscriptionsRemoved));
       return {
         subscriptions: subscriptionsRemoved
       }
@@ -50,7 +47,6 @@ export default (state = initialState, action) => {
           return {author: action.payload.author, subscriptor: action.payload.subscriptor, state: action.payload.state}
         }
       })
-      localStorage.setItem('social.subscriptions', JSON.stringify(subscriptionsUpdated));
       return {
         subscriptions: subscriptionsUpdated
       }

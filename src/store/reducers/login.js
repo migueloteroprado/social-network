@@ -16,7 +16,6 @@ export default (state = initialState, action) => {
         error: null
       }    
     case LOGIN_SUCCESS:
-      sessionStorage.setItem('social.currentAuthor', JSON.stringify(action.payload))
       return {
         ...state,
         currentAuthor: action.payload,
@@ -35,7 +34,6 @@ export default (state = initialState, action) => {
         error: null
       };
     case LOGOUT: {
-      sessionStorage.removeItem('social.currentAuthor')
       return {
         ...state,
         currentAuthor: null,

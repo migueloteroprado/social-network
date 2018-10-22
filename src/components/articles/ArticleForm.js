@@ -16,8 +16,11 @@ class ArticleForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     this.props.onAddArticle(this.state.title, this.state.content)
-    this.setState({showMessage: true})
-    document.querySelector('#articleForm').reset();
+    this.setState({
+      title: '',
+      content: '',
+      showMessage: true
+    })
   }
 
   resetMessage = () => {
@@ -33,12 +36,12 @@ class ArticleForm extends Component {
         <div className="form-group">
           <label htmlFor="title">
           Title 
-          <input type="text" className="form-control" name="title" id="title" onChange={this.handleInput} required /></label>
+          <input type="text" className="form-control" name="title" id="title" value={this.state.title} onChange={this.handleInput} required /></label>
         </div>
         <div className="form-group">
           <label htmlFor="content">
           Content 
-          <textarea className="form-control" name="content" id="content" onChange={this.handleInput} rows="5" required /></label>
+          <textarea className="form-control" name="content" id="content" value={this.state.content} onChange={this.handleInput} rows="5" required /></label>
         </div>
         <div className="form-group">
           <button type="submit" className="btn btn-primary">Add Article</button>

@@ -8,7 +8,6 @@ import AuthorsPage from '../authors/AuthorsPage'
 import AuthorDetailPage from '../authors/AuthorDetailPage'
 import ProfilePage from '../profile/ProfilePage'
 import RequestsPage from '../requests/RequestsPage'
-import GoTop from '../footer/GoTop'
 import NotFound from '../common/NotFound'
 
 const Main = (props) => {
@@ -26,7 +25,6 @@ const Main = (props) => {
           <Route component={NotFound} />
         </Switch>
       </div>
-      <GoTop />
     </div>
   );
 };

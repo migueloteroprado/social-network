@@ -34,9 +34,10 @@ export const dispatchLoginStarted = (userName, password) => dispatch => {
   dispatch(actionLoginStarted(userName, password))
   const author = checkLogin(userName, password)
   if (author) {
-    dispatch(actionLoginSuccess(author))
+    dispatchLoginSuccess(author)
+    sessionStorage.setItem('social.currentAuthor', JSON.stringify(store.getState().login.currentAuthor))
   } else {
-    dispatch(actionLoginError())
+    dispatchLoginError('Invalid username or password')
   }
 }
 
@@ -54,6 +55,7 @@ export const dispatchLoginReset = () => {
 
 export const dispatchLogout = () => {
   store.dispatch(actionLogout())
+  sessionStorage.removeItem('social.currentAuthor')
 }
 
 // Function to check if username and password are valid

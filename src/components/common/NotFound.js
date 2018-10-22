@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 
 const NotFound = (props) =>
@@ -7,13 +8,15 @@ const NotFound = (props) =>
     <button className="btn btn-primary btn-sm" onClick={() => props.history.goBack()}>Go Back</button>
   </div>
 
-export default styled(NotFound)`
-  padding: 20px;
-  background: ${props => props.theme.colors.background.content};
-  border: 1px solid ${props => props.theme.colors.border};
-  border-radius: 5px;
-  margin-top: 20px;
-  h4 {
-    margin-bottom: 15px;
-  }
-`;
+export default withRouter(
+  styled(NotFound)`
+    padding: 20px;
+    background: ${props => props.theme.colors.background.content};
+    border: 1px solid ${props => props.theme.colors.border};
+    border-radius: 5px;
+    margin-top: 20px;
+    h4 {
+      margin-bottom: 15px;
+    }
+  `
+)

@@ -19,6 +19,7 @@ export const dispatchLoadArticles = (articles) => {
   store.dispatch(actionLoadArticles(articles));
 }
 
-export const dispatchAddArticle = (article) => {
-  store.dispatch(actionAddArticle(article));
-}
+export const dispatchAddArticle = (article) => dispatch => {
+  dispatch(actionAddArticle(article));
+  localStorage.setItem('social.articles', JSON.stringify(store.getState().articles.articles));
+};

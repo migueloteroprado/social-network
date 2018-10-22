@@ -14,7 +14,6 @@ export default (state = initialState, action) => {
       }    
     case ADD_ARTICLE:
       const articles = [...state.articles, action.payload]
-      localStorage.setItem('social.articles', JSON.stringify(articles));
       return {
         articles,
         id: action.payload.id

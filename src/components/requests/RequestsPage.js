@@ -43,7 +43,7 @@ class RequestsPage extends Component {
   }
 
   handleAccept = (event, subscription) => {
-    this.props.onAccept({
+    this.props.dispatchAcceptSubscription({
       author: this.props.currentAuthor.login.uuid,
       subscriptor: subscription.subscriptor,
       state: 'accepted'
@@ -51,7 +51,7 @@ class RequestsPage extends Component {
   }
 
   handleReject = (event, subscription) => {
-    this.props.onReject({
+    this.props.dispatchRejectSubscription({
       author: this.props.currentAuthor.login.uuid,
       subscriptor: subscription.subscriptor,
       state: 'rejected'
@@ -64,8 +64,10 @@ export default styled(
   connect(
     state => ({ authors: state.authors.authors, currentAuthor: state.login.currentAuthor, subscriptions: state.subscriptions.subscriptions }),
     dispatch => ({
-      onAccept: (subscription) => dispatchAcceptSubscription(subscription),
-      onReject: (subscription) => dispatchRejectSubscription(subscription)
+      //onAccept: (subscription) => dispatchAcceptSubscription(subscription),
+      //onReject: (subscription) => dispatchRejectSubscription(subscription)
+      dispatchAcceptSubscription,
+      dispatchRejectSubscription
     })
   )(RequestsPage)
 )`
